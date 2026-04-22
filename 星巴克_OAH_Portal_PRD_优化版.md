@@ -13,7 +13,7 @@
 
 ## 3. 术语表与缩写
 
-- **OAH**: Online Application Hub
+- **OAH**: One Analytical Hub
 - **PRD**: Product Requirement Document
 
 ## 4. 系统架构总览
