@@ -1,0 +1,1089 @@
+　　星巴克 OAH Portal需求说明书
+文档变更记录
+序号变更（+/-）说明作者版本号日期批准1创建1.021、 更新home页my favorite的说明
+2、 申请审批管理增加查询条件31、2.2.5MY FAVORITE营运伙伴增加管理区域的显示
+2、3.2.4修改报表的Expose权限，营运伙伴，security levelL1-L3所有人可见，L4本部门可见4* 4.2.1报表的审批节点1有以下逻辑：
+a) 如果申请人低于M4，需要直属汇报线的第一个M4/T7审批；
+b）如果申请人>=M4 and <E2，审批节点1由Line Manager批；
+c）如果审批人>=E2,审批节点1默认审批通过，直接流转到审批节点2进行审批。4/235补充PRD第三部分：系统P1、P2阶段 系统管理需求1.05/296增加OAH的Hub 功能1.07/1471 更新3.2.4 expose&Popularity 逻辑
+2 更新24.2.3 Hub的权限继承逻辑
+3 更新3.2.2中PAPP的处理逻辑
+4 增加了information中data product owner&data developer的字段
+1.09/381 更新了20.2 ，’应用找人’中Hub赋权相关的内容
+2 更新19.1.1.2中查询字段的字段名和对应的枚举值
+3 更新了3.2.4中Popular Reports的统计逻辑及CLT Role的逻辑
+4 新增OAH 门店伙伴简化版
+5 新增Notification配置界面
+Andrew1.0.341/25/202691  5.2.2 中审批页面加上申请人的部分和职级
+2  3.2.4 中新增门店白名单功能描述
+Andrew1.0.353/5/2026101 4.2.2 中新增了权限临期报表的处理及续签标签的描述
+2 更新了3.2.4 中 关于ops伙伴没有报表权限的展示
+3 在5.2.1中新增了工作流管理的功能描述
+Andrew1.0.363/17/2026111 在25.1 中新增了OAH Ops Version
+2 新增了25.2 中的门店扫码功能描述
+3 新增了25.3 门店代理功能描述
+4 在5.2.2 中新增了PAPP的审批截图及功能描述
+5 在4.2.1中新增了各个审批节点背景色的功能描述
+6 在27.1&27.2中，新增了关于Mobile DAC store scope和module的修改描述Andrew1.0.373/26/2026
+
+目录
+一、 项目P0阶段OAH需求说明	9
+1.	导航菜单	9
+2.	HOME	9
+2.1.	界面展示	9
+2.2.	功能说明	10
+3.	REPORTING	13
+3.1.	界面展示	13
+3.2.	功能说明	13
+4.	Request Access	22
+4.1.	界面展示	22
+4.2.	功能说明	22
+5.	申请审批管理	27
+5.1.	界面展示	27
+5.2.	功能说明	28
+6.	METADATA主页	36
+6.1.	界面展示	36
+6.2.	功能说明	36
+7.	Glossaries Content详情页	40
+7.1.	界面展示	40
+7.2.	功能说明	40
+8.	P0阶段metadata权限	41
+二、项目P1、P2阶段OAH需求说明	42
+10.	HOME	42
+10.1.	界面展示	42
+10.2.	功能说明	42
+11.	REPORTING	43
+11.1.	界面展示	43
+11.2.	功能说明	44
+12.	METADATA主页	50
+12.1.	界面展示	50
+12.2.	功能说明	51
+13.	Glossaries Content详情页	55
+13.1.	界面展示	55
+13.2.	功能说明	55
+14.	Dictionary Content详情页	56
+14.1.	界面展示	56
+14.2.	功能说明	56
+15.	Glossaries Details页	58
+15.1.	界面展示	58
+15.2.	功能说明	59
+16.	P1-P2阶段metadata权限	60
+三、项目P1、P2阶段 系统管理需求	61
+17.	后台功能列表	61
+18.	用户管理	61
+18.1.	用户管理	61
+18.2.	用户组管理	63
+18.3.	角色管理	71
+19.	应用管理	76
+19.1.	报表管理>报表管理	76
+19.2.	报表管理>报表源管理	87
+19.3.	Metadata管理>Subject area配置	88
+19.4.	Metadata管理>Category配置	92
+19.5.	Metadata管理>Matrix管理	94
+19.6.	Metadata管理>Content管理	95
+19.7.	Glossaries Content详情	99
+19.8.	Dictionary Content详情	104
+19.9.	Cube管理	105
+19.10.	My Favourite管理	105
+19.11.	Reference管理	108
+20.	权限管理	111
+20.1.	报表Expose权限	111
+20.2.	权限配置	115
+20.3.	报表行列级权限	132
+21.	系统分析报表	133
+21.1.	用户分析	133
+21.2.	用量分析	133
+21.3.	资源分析	133
+22.	Q&A	133
+22.1.	界面展示	134
+22.2.	功能说明	135
+23.	系统消息	136
+23.1.	界面展示	136
+23.2.	功能说明	138
+24.	OAH Hub配置功能	140
+24.1.	界面展示	140
+24.2.	功能说明	141
+四、FY26 OAH 需求汇总	143
+25.	OAH 门店伙伴简化版	143
+25.1.	界面展示	143
+25.2.	功能说明	144
+25.3.	Ops门店代理功能	144
+26.	Notification 配置界面	146
+26.1.	界面展示	146
+26.2.	功能说明	147
+26.3.	基础信息填写	147
+27.	Mobile DAC的权限功能调整	148
+27.1.	前端展示	148
+27.2.	功能描述	149
+
+
+一、 项目P0阶段OAH需求说明
+1. 导航菜单
+1、顶部导航栏展示系统菜单，共包含以下4个tab：HOME、REPORTING、METADATA、REFERENCE。
+2、选中的菜单高亮显示。
+3、进入系统后，默认选中HOME。
+2.  HOME
+2.1. 界面展示
+
+
+2.2. 功能说明
+1. 页面划分多个模块，具体展示样式参考上方UI图。
+2. 查询条件（P0阶段暂不做）。
+3. P0阶段需要后台上传的文件见下附件。
+
+
+
+2.2.1. GET STARTED
+1. 展示系统相关的文字介绍和FAQ说明，P0阶段展示内容见1.2.2。
+2. FAQ中点击文章标题，可以直接跳转到新页面，打开浏览。
+3. 输出项：
+序号标题控件说明1What is Data Café？文本后续内容根据系统管理配置中展示2FAQ标题链接默认按照上传时间倒序排序，若超过六条，鼠标滚动展示
+若标题长度超过展示区域，则超出部分用“…”展示，鼠标移入悬浮展示全部内容
+后续内容根据系统管理配置中展示
+2.2.2. NEW OFFERINGS
+1. 模块按照更新时间倒序排序，展示近30天变动内容。
+2. 数据来源：
+　　①　 上传通过后的repirting名称，若reporting为更新，需将原有对应内容覆盖；
+　　②　 知识管理模块中上传的内容，包括视频或文件；
+3. Metadata上传内容（待定）。
+4. 根据用户权限展示，若报表没有针对登录用户exposure，则该用户的new offering中看不到该条信息。
+2.2.3. ANALYTICS CATEGORIES
+1. 展示八个跳转按钮，P0阶段写死sales、customer、Promotion、Product、Store、Ops、SCO（对应domain中supply chain、PRO（对应domain中partner），后续可根据系统管理配置展示。
+2. 点击跳转到Reporting页面，左侧报表类型默认展示选中的categories，右侧展示选中的报表列表。
+2.2.4. RECENT VIEWS &POPULAR REPORTS
+1. 默认展示 RECENT VIEWS tab可点击切换为POPULAR REPORTS tab。
+2. RECENT VIEWS
+* 用户首次进入系统后，recent view模块默认展示缺省图，待用户浏览过报表后，将最近浏览过的五张报表名称展示在该模块，展示报表名称和【DETAIL】按钮，可点击报表名称直接跳转至改报表页面；点击【DETAIL】按钮，弹出more information窗口。
+* 若用户无报表权限，弹出more information窗口。
+* 只要客户点击报表即计算为一次浏览量，不管是否有权限。
+3. POPULAR REPORTS
+* 上线后，popular reports模块默认展示缺省图。
+* 基于所有平台用户过去30天的访问PV进行从高到底的排序。如果一张报表属于一个Hub，则该报表的访问算在对应的Hub上。e.g. Report A 隶属于Hub B 下，则统计Popular Reports 时，Report A的访问全部归HUB B头上。[AHL1]
+2.2.5. MY FAVORITE
+1. 指标数据对接tech数据，前端配合展示指标图。
+2. 后续根据权限配置，不同的用户可勾选不同类型的图展示。
+3. 筛选条件包括：sales、ADT、AT、Discount rate、Mark-out，P0阶段先做sales、ADT、AT。
+4. 统计图中的数值，取昨日数据；下方横坐标展示为过去15日的日期。
+5. 权限：用户登录oah系统时同步PRO权限，ops伙伴按ops?hierarchy展示数据，例ops伙伴拥有A、B两家门店权限，则统计图展示A+B门店数据合；其余用户按部门是否有权限展示，一阶段该模块权限先对Finance，Digital?ventures两个部门开放，若用户不在该部门内，则该模块显示暂无权限。
+6. 当营运伙伴访问时，需基于门店的营运组织架构，展示他的管理范围。比如：ado显示的是他管理的大区，dm展示的是他管理的小区，SM展示的是他管理的门店。（营运组织架构P0阶段从DAC同步）
+3. REPORTING
+3.1. 界面展示
+
+Ops Version:
+
+3.2. 功能说明
+1. 页面划分多个模块，具体展示样式参考上方UI图。
+3.2.1. NAVIGATOR
+1. 左侧树状图展示报表类型，与下方reports and dashboards模块联动。选中的类型，展示在下方模块。
+2. 后续可根据系统管理-知识管理- navigator配置展示，与上传时的subject area字段对应，例navigator选择sales，则展示subject area1为sales的报表。
+3. 若用户的ROLE所属CLT，则默认选中CLT类型，其他类型用户默认选中ALL，若用户无任何报表权限，navigator固定置灰，不可点击；若用户有部分权限，点击无权限分类时，右侧不展示报表，提示无权限。
+3.2.2. NOTIFICATIONS（P0阶段暂不做）
+
+1. 消息模块默认为收起状态，展示最新一条，点击【view all】按钮，下拉模块，展示最新三条消息，按照时间倒序排序。新消息点击后仍展示。永远展示最新的三条信息。
+2. 若有系统通知，交互样式参考如下：
+
+3. 展示方式：消息类型+报表名称+MM/DD/YYYY。（例：NEW Reinvention 11/21/2024）
+序号字段名控件说明1消息类型枚举值：NEW ITEM、UPDATED ITEM
+若报表卡片为首次上传，消息类型为new、若为修改类型updated
+NEW---绿色，UPDATE---蓝色2报表名称文本取上传时report name字段3日期日期控件取上传/更新报表时间4详情按钮点击【details】按钮，打开more information弹窗
+4. 点击消息，判断当前用户权限，若用户有点击的报表的权限，直接跳转到该报表；若用户没有权限，则打开more information窗口。如该报表为PAPP报表，则点击后提示‘Please?get?access?to?this?report?via?PAPP?on?your?mobile’
+3.2.3. MY FAVORITE REPORTS
+
+1. 此窗口默认为收起状态，点击右侧小三角展开；展示登录用户最新收藏的五条报表。
+2. 点击收藏的报表名称，判断当前用户权限，若用户有当前报表的权限，直接跳转到该报表；若用户没有权限，则打开more information窗口。
+3. 支持进行取消收藏操作，点击报表名左侧五角星，弹出确认取消收藏弹框；取消收藏后的报表不在该模块展示，自动填充最新的一条报表名称。
+4. 上下箭头按钮为排序功能，可以手动将报表列表进行排序。
+5. 删除按钮，点击可以将该条报表在收藏页面删除，即将该报表改为不收藏的状态。
+3.2.4. REPORTS AND DASHBOARDS
+1. 默认一行展示三个报表信息，超出三个鼠标向下滑动展示。
+2. 列表展示筛选下拉框，默认按照popularity进行排序。
+3. P0阶段的报表默认排序按照创建时间倒序排序。
+4. 规则说明：
+* 当非门店伙伴点击报表模块，根据报表的security level L1-L4区分Expose权限，L1、L2、L3所有用户可以查看，L4只有本部门（即报表的owned by partner）可以查看，能查看该报表的，点击后可直接跳转到对应报表。
+* 当报表的is_exposure标签为1 时，该报表对所有用户展示。当当报表的is_exposure标签为0时，该报表基于用户上传时配置的部门进行展示。Is_exposure为0的报表，不能被没非上传设定部门的用户搜索到
+* Management Report 只开放给CLT及有数据权限的用户展示
+* 若非门店伙伴没有报表权限，点击后弹出More information窗口，用户可在该窗口中点击【Request access】按钮，发起申请。
+当营运伙伴访问时，需根据从DAC同步的门店组织架构，决定用户能看见哪些报表列表及报表详情。
+* 对门店伙伴，增加报表的白名单功能：如果一个伙伴不在白名单中，则这张报表不对他expose[AHL2]
+* Popularity 按rolling过去30天的报表访问PV排序；当报表归属于一个Hub 时，该报表的访问PV算在Hub上。如果一张报表归属多个Hub则对应的Hub 都+1访问[AHL3]
+* 针对CLT Role, 如果一张报表Exposure to CLT,则CLT默认有该报表的数据权限。如果一张报表或Hub 没有设置成exposure to CLT Role, 则CLT Role在该报表/HUB在前端对CLT Role不可见[AHL4]
+* OPS伙伴在没有权限访问报表时，报403，而不是跳转到Home[AHL5]
+[AHL6]
+
+5. 输入项（P0阶段暂不做）：
+序号字段名控件说明1Sort by下拉框默认选中Popularity
+枚举值包括：Popularity、Alphabetical by title、Create time、Last update time2搜索框搜索框默认显示文字“Reporting Search”，支持模糊搜索3重置图标点击重置，清空查询项，页面刷新，恢复到默认列表Advanced search1Business unit下拉框默认为空
+枚举值（暂定）：
+Department：Digital Ventures/ Marketing & Customer Engagement/ Operations/ Finance/ PRO/ Supply chain
+Team：MOD/MOP/Curbside/Ecommerce/Social Commerce/B2B/Wechat/Marketing/Member/ Operations/ FPA/ Accounting/ PRO/2TBD launch time日期控件默认为空，可选日期范围<=财年财月（接入内部日历数据）3Update time日期控件默认为空，可选日期范围<=财年财月（接入内部日历数据）4ADD NEW按钮点击按钮跳转到上传页面
+6. 输出项：
+序号字段名控件说明1缩略图图片取上传时report image字段，支持放大查看2报表标题文本取上传时report name字段3报表状态状态值New、update、无
+New：该报表为新建；用户点击后不再展示状态
+Update：该报表为更新，用户点击后不在展示状态
+无：新报表和修改过的报表用户点击后，展示无状态4Description文本取上传时report description-short字段
+默认展示两行，若描述部分超过两行，则展示省略号，鼠标移入悬浮展示全部内容5Owned By Department文本取上传时Owned By Department字段6Request access按钮点击打开报表申请页面7More information按钮点击打开More information窗口8收藏图标按钮默认未收藏状态，点击收藏后，图标高亮显示9Data Product Owner文本取上传时Data Product Owner字段10Data Developer文本取上传时Data Developer字段
+3.2.4.1. 上传（P0阶段暂不做）
+规则说明：
+1. 点击【SUMBIT】时，校验必填项是否全部填写，若有未填写的字段，该字段红框展示，下方提示“please input”，不可提交成功。
+2. P0阶段，由数据部人员手动上传/修改报表，待后续开放用户上传报表功能，用户申请上传后，状态为未发布，审批通过后，状态变为已发布时，前端才展示上传的报表。
+3. 已发布的报表，在REPORTING-NOTIFICATION模块中展示，且用户可在报表管理模块，查看到自己上传的报表。
+4. 若用户在报表管理中下架或删除报表，REPORTING页面需要同步取消展示相应报表。
+5. 输入项：
+序号字段名控件说明1REPORT NAME输入框必填项，默认为空，最大限制100字符
+注释：2REPORT DESCRIPTION-SHORT EN输入框必填项，默认为空，最大限制200字符，当系统语言为英文时展示3REPORT DESCRIPTION-DETAILED EN输入框必填项，默认为空，最大限制500字符，当系统语言为英文时展示4Report Description-Short CN输入框必填项，默认为空，最大限制200字符，当系统语言为中文时展示5REPORT DESCRIPTION-DETAILED CN输入框必填项，默认为空，最大限制500字符，当系统语言为中文时展示6Report URL输入框必填项，默认为空，最大限制200字符7Report Screenshot图片必填项，默认为空，校验只能上传一张图片8Display Platform单选按钮必填项，默认为空，
+枚举值：PC、Mobile9Department下拉框必填项，默认为空
+枚举值：Finance、Ops、PRO、DV、OPS、Marketing & Customer Experience、Product, R&D, SCO，Tech10Business Unit (optional)下拉框必填项，默认为空
+枚举值：MOD、MOP、Curbside、Ecommerce、Social Commerce、B2B、Wechat、Marketing、Member/、Operations、FPA、Accounting、PRO11Business Owner模糊搜索框必填项，默认为空
+与行内pro系统对接，可模糊搜索owner名称12Business Owner Email输入框必填项，默认为空
+当选中Business Owner时，自动带出其Email，不可修改13Data Domain 1下拉框必填项，默认为空
+枚举值：CLT?dashboards、sales、?promotion?&?campaign、customer、?store、ops、finance、supply?chain、legal、partner、organization、public?14Data Domain 2下拉框当domain1选择supply?chain时，枚举值为Supplier?&?vendor15Data Domain 3下拉框预留，暂不设置16Data Owner模糊搜索框必填项，默认为空
+与行内pro系统对接，可模糊搜索owner名称或AD账号17Data Owner Email输入框必填项，默认为空
+当选中Data Owner时，自动带出其Email，不可修改18Security Level下拉框必填项，默认为空
+枚举值：L4 - PRIVATE、L3 - CONFIDENTIAL、L2 - INTERNAL、L1 - PUBLIC19Cube type下拉框默认为空
+枚举值：Financial Cube、Inventory Cube、Roastery Cube、QA Cube20Data Tool下拉框必填项，默认为空
+枚举值：Power BI、Tableau、APP、Quick BI,PAPP21state单选按钮必填项，默认为空
+枚举值：new、update22CANCEL按钮23SUBMIT按钮
+3.2.4.2. 详情
+序号字段名控件说明1report name文本取上传时report name字段2Report Screenshot图片取上传时Report Screenshot字段，支持放大查看3Description文本取上传时report description-short字段5Business Unit文本取上传时BUSINESS UNIT字段6Data Tool文本取上传时Data Tool字段7Department文本取上传时Department字段8Data Domain (s)文本取上传时Data Domain 1、Data Domain 2、Data Domain 3 三个字段，若有多个中间用逗号分隔9Business SME文本取上传时Business Owner、Business Owner EMAIL字段
+展示形式为Business Owner（Business Owner EMAIL）10Request access按钮点击打开报表申请页面11收藏图标按钮默认未收藏状态，点击收藏后，图标高亮显示
+
+
+4. Request Access
+4.1. 界面展示
+
+手机版本：
+
+
+4.2. 功能说明
+  申请入口：REPORTING-报表卡片-【Request Access】进入，application type为dashboard。
+4.2.1. 申请报表
+1. 以下不在P0阶段实现，设计上需要预留：
+* REFERENCE进入，application type为cube。 
+* 从系统管理-报表管理-【new request】申请，需要先选择dashboard、cube，注通过该路径发起的报表申请，可在新增页添加多个同application type的报表，具体展示样式参考UI。
+* 预留metadata申请入口。
+*  预留接入dataphin(底层表）的权限申请。
+2. 规则说明：
+*  用户填写内容提交后，发起申请流程，此时第一节点审批人收到邮件，邮件模板为【】，并在发送记录页面记录审批邮件发送状态。
+*  当第一节点审核通过后，第二节点审批人收到邮件，以此类推直到最终审批人。
+*  审核流程进度条在用户申请是默认为灰色，当审批人审批通过后，该节点显示为绿色，若当审批人审批拒绝，该节点显示为红色。
+*  每层级的审批人审批通过或拒绝，都需要给申请人发送邮件，审批通过邮件模板为【】，审批拒绝邮件模板为【】。
+* 若当前有用户正在申请流程中，此时报表操作下架或删除，审核人会进行审批拒绝操作。 
+*  申请页面30s自动进行保存操作，保存的数据展示在草稿tab页。
+*  点击【提交】时，校验必填项是否全部填写，若有未填写的字段，该字段红框展示，下方提示“请输入”，不可提交成功。
+* 点击【取消】时，提示“该条记录已保存为草稿，您可在【我的中心】-【我的审批】中查看”。
+* 若当前报表申请人为审批最后一个层级的直属汇报线（从PRO系统接入），则发起审批后自动审批通过，不需要进行审批流程。
+* 报表的审批节点1有以下逻辑：
+a) 如果申请人低于M4，需要直属汇报线的第一个M4/T7审批；
+b）如果申请人>=M4 and <E2，审批节点1由Line Manager批；
+c）如果审批人>=E2,审批节点1默认审批通过，直接流转到审批节点2进行审批。
+* 审批流程的颜色标注：
+已完成：绿色；进行中：黄色，未开始：灰色[AHL7]
+
+
+
+
+Data owner（权限矩阵，TBD）
+3. 输入项：
+新建权限申请序号字段名控件说明报表主题1/多层级选择框当从权限管理-点击【New Request】发起dashborad报表时展示。
+枚举值：Sales、Promotion、Product/Customer、Traffic & conversion、Store、Supply chain、PRO、Operations、Finance基本信息1Application Name文本根据点击的报表，自动获取上传报表时的字段。
+Application Name取REPORT NAME字段2Application Type文本默认为：dashborad3Application Tool文本Application Tool取REPORT APPLICATION字段，4Owned By Department文本Owned By Department取Owned By Department字段,5Description文本Description取REPORT Description-SHORT字段,6Data Owner文本Data Owner取Data Owner字段权限信息1Metrics下拉复选框必填项，
+P0阶段具体每张报表的值见表格，后续根据权限管理-申请权限配置中的内容展示。2Module下拉复选框必填项
+同上3Store Scope下拉复选框必填项
+同上申请理由1Justification (申请理由)输入框必填项，默认为空，最大限制200字符权限有效期1日期区间日期控件必填项，默认为空
+日期控件最多支持选中当前日期至后一年内的日期，例申请人为2025.2.14，最多可选择到2026.2.13，其余日期置灰不可选择
+点击快速选择，则根据选择的时间反显到日期区间2快速选择单选按钮默认为空
+若校验到申请人为PSP类型，默认选中共3个月并置灰展示，不可选择其他，且上方日期区间默认展示为3个月范围
+枚举值：3个月（PSP伙伴勾选）、6个月、12个月审批流1Line Manager Approval文本取审核流配置中该报表该审核节点对应的审批人2Agent Preliminary Approval文本取审核流配置中该报表该审核节点对应的审批人3Data Owner Approval文本取审核流配置中该报表该审核节点对应的审批人按钮1Submint按钮2Cancel按钮4.2.2. 自动续签
+1. 当用户申请报表的权限还有7天（按自然日计算）将要过期时，自动发送定时邮件（例当日上午10点）给该用户发送邮件通知，模板：
+【Hi XXX,
+  您的【Application Name】权限将7天后(YYYY-MM-DD)到期。为了不影响你的正常使用，请点击链接进行续签:
+www.oah.com
+　　Best
+　　?Data Team】
+　　
+　　例：
+【Hi Andrew,
+  您的【Financial Cube】权限将7天后(2025-01-26)到期。为了不影响你的正常使用，请点击链接进行续签:
+www.oah.com
+　　Best
+　　?Data Team】
+2. 用户点击邮件链接可直接跳转到系统申请报表页面，自动带出上次所填写的信息，申请理由默认显示“权限续签”。申请时间为空，需要填写后再提交续签申请后，审批流跟新申请流程一致
+3. 申请的Report?list要把临期的放出来?，提前2周让用户可以申请
+4. 在审批流中，体现续签标签[AHL8]
+
+
+5. 申请审批管理
+5.1.  界面展示
+
+
+[AHL9]
+5.2. 功能说明
+5.2.1. 申请记录
+1. 用户申请报表权限后，可点击右上角按钮，打开申请审批管理页面，查看申请记录和草稿。
+2. 权限申请页面，分成四个tab，包括：我的申请、草稿、待处理审批、已完成审批，默认展示我的申请tab页。
+3. 【我的申请】：
+* 展示所有登录用户提交的审批记录。
+* 默认根据时间倒序排序，点击可查看审批记录。
+* 若用户同时发起多个报表的申请，列表展示第一个报表的信息，点击【detail】在详情页中查看所有信息。
+4. 【草稿】：
+* 展示所有登录用户保存暂未提交的审批记录，右上角红色数字展示草稿内申请条数。
+* 默认按照时间倒序排序。
+* 用户可以修改信息后进行审批提交，提交后该条记录转到【我的申请】tab页。
+* 根据报表名称校验每个报表有且只有一条最新的草稿数据。
+5. 【待处理审批】：
+* 展示审批节点为登录用户的申请单，右上角红色数字展示待审批的条数。
+* 默认按照时间倒序排序。
+* 点击可对这条申请记录进行审批操作，具体见第八条输出项。
+* 审批操作后，该条记录转到【已完成审批】tab。
+6. 【已完成审批】：展示登录用户审批过的申请单，默认按照时间倒序排序。
+7. 【审批流管理】：
+* 展示进行中的审批工单
+* 支持按照审批工单号，审批类型，申请人，申请名进行查询
+* 支持进行批量的撤回（点击Batch Revoke按钮）
+序号字段名控件说明1Application Number文本申请提交成功后，系统自动生成
+生成规则为：年份+日期+随机6为数字，例：202502150000012Application Type文本取申请时Application Type字段3Application Name文本取申请时Application Name字段4Initiation Time日期格式：YYYY-MM-DD
+草稿tab页：取自动保存的时间
+其余tab页：取提交申请时间5Applicant文本待处理审批、已完成审批tab页展示该字段，自动获取申请人名称7Batch Revoke按钮点击后撤销选中的申请
+，[AHL10]
+8. 申请提交后状态默认为In Progress，数据展示在我的申请页中，
+① 判断当前审批层级，若不是最终审批人，审批通过后状态依旧保持为“In Progress“；
+② 若最终审批人审批通过，状态更新为Approve；
+③ 若审批人审批拒绝，状态更新为Rejected。
+9. 输入项：
+序号字段名控件说明1Application Number输入框默认为空，支持模糊搜索2Application Type下拉框默认为空，枚举值同申请字段3Application Name输入框默认为空，支持模糊搜索4Status下拉框默认为空，枚举值：Approve、Rejected、In Progress
+10. 输出项：
+序号字段名控件说明1Application Number文本申请提交成功后，系统自动生成
+生成规则为：年份+日期+随机6为数字，例：202502150000012Application Type文本取申请时Application Type字段3Application Name文本取申请时Application Name字段4Initiation Time日期格式：YYYY-MM-DD
+草稿tab页：取自动保存的时间
+其余tab页：取提交申请时间5Applicant文本待处理审批、已完成审批tab页展示该字段，自动获取申请人名称6Status文本申请人：Approve、Rejected、In Progress7Actions按钮【待处理审批】tab页，若用户为审批人，则展示approve、reject按钮；
+其他tab页展示 Detail按钮，8Add New按钮支持在申请记录页面，点击【Add New】按钮发起报表申请，具体需求见申请报表
+5.2.2. 审批功能
+1. 若用户有审批权限，当审批流程走到自己时，在待审批tab中展示申请数据，审批通过后，该条数据进到已审核页。
+审批人会收到审批邮件提醒，邮件模板
+【Hi XXX,
+ 【Applicant xxx】 正在申请【Application Name】的权限，你也可点击以下链接查看详情进行审批。
+www.oah.com
+　　Best
+　　?Data Team】
+2. 审批人可直接点击邮件在手机端上进行审批-p2实现。 
+3. 根据系统管理-审批提醒配置中配置的提醒时间，对审批人进行审批提醒。例：配置审批提醒时间为15天，即当用户提交申请后的15个自然日内审批人没有审批，在第16日自动发送提醒邮件。邮件模板【】
+4. 审核人点击拒绝按钮时，必须要填入拒绝原因，否则不可提交。
+5. 输出项：
+权限申请序号字段名控件说明申请信息1Application Name文本取申请时字段2Application Type文本3Application Tool文本取上传报表REPORT APPLICATION字段4Name文本根据申请人，自动获取5Department / Team /Position文本6Region文本权限信息1Metrics文本取申请时字段2Module文本3Store Scope文本申请理由1/文本取申请时字段权限有效期1/文本取申请时字段审批流进度条展示样式：
+日期+时间（精确到时分秒）+人名(部门-职级)+状态
+需展示申请人信息，例：
+2025-01-09 13:5:45
+Andrew Lu Submid[AHL11]
+
+如果该用户过去（30天）有该报表权限，现在到期续签，在审批页面加上标识（Renewal），提醒审批人“该用户为续签”[AHL12]
+
+
+
+按钮1通过按钮2拒绝按钮3拒绝原因输入框当点击拒绝按钮，需填写拒绝原因
+输入框，最大限制50字符6. 支持PAPP中完成应用的审批功能  (字段参考PC端审批，保持一致)
+
+
+
+
+
+5.2.3. 审批详情
+1. 点击【detail】按钮，打开申请详情页，页面全部只读，不可编辑。
+2. 输出项：
+权限申请序号字段名控件说明申请信息1Application Name文本取申请时字段2Application Type文本3Application Tool文本取上传报表REPORT APPLICATION字段4Name文本根据申请人，自动获取5Department / Team /Position文本6Region文本权限信息1Metrics文本取申请时字段2Module文本3Store Scope文本申请理由1/文本取申请时字段权限有效期1/文本取申请时字段审批流1进度条展示样式：
+日期+时间（精确到时分秒）+人名+状态
+需展示申请人信息，例：
+2025-01-09 13:5:45
+Andrew Lu Submid6. METADATA主页
+6.1. 界面展示
+
+6.2. 功能说明
+1. METADATA PLATFORM MATRIX：元数据矩阵。
+a) 列为：Subject area L1，行为：Category L1，列与行的值在P0阶段插入数据库表，未来均可以在管理后台配置，Subject area需支持三级，category支持二级，支持排序、设置是否可视。
+P0阶段列-Subject area的值如下SALESBUSINESS CUSTOMERCUSTOMERFINANCELEGALMARKETING
+PARTNERPRODUCT&ITEMSTARBUCKS TECHNOLOGYSTORESUPPLY CHAINPUBLIC
+P0阶段行-Category的值如下：GLOSSARIESDATA DICTIONARIESACCESS DOCUMENTATIONSYSTEM DOCUMENTATIONREFERENCE DOCUMENTATIONb) 元数据矩阵描述内容，在静态页面写死：“Click on a row，column or intersection in the graphic below to filter content below，or search for content in the search bar above.”
+c) 元数据矩阵的Legend状态：AC-active content、ID-in development、NC-no content。P0阶段写死。未来ID和NC由用户手动设置，AC状态由系统自动更新。当ID状态有审批通过的资产时，系统自动修改状态为AC。
+d) 元数据矩阵筛选器：可按列、行单独筛选，也可以行+列交叉筛选。例如：按customer（列）筛选所有customer domain的内容，按glossaries（行）筛选所有glossaries资产，按customer +glossaries，筛选customer domain下的glossaries类型资产。选中后的矩阵区域在交互上需高亮显示。
+2. CONTENT：资产内容组件。
+a) 以组件形式展示元数据矩阵筛选后的资产合集。例如：用户按customer（列）筛选，则Content仅展示subject area 属于“customer”的资产。若用户没有对数据矩阵筛选，Content展示所有资产。
+b) 默认生成一个all glossaries的content，进入二级页面时subject area默认选“all”。
+c) 默认生成一个all data dictionary的content，点击后跳转data dictionary的list（这个可以放在P1，需要页面设计）
+d) Content包含以下信息： 
+序号字段名控件举例说明1asset title文本 2description文本 3Keywords文本用于搜索4Asset link/location链接当asset type为glossaries、dictionary，Asset link置灰，不可配置。当asset type为其他值，Asset link可以配置链接 5Asset tool下拉框固定值：ali、document、confluence、MDM、other6Asset type下拉框值为category L2，即第二层级的category的值7Owned by department文本8Owner by partner文本9Contact e-mail文本10Subject area L1下拉框非固定值，从管理后台配置项读取11Subject area L2(optional)下拉框选填，非固定值，从管理后台配置项读取，Subject area L2与Subject area L1的值有关联关系12Subject area L3(optional)下拉框选填，非固定值，从管理后台配置项读取，Subject area L3与Subject area L2的值有关联关系13Language下拉框固定值：en-英文、cn-中文、other14status下拉框固定值：pending-待提交/审批不通过，approved-审批通过，candidate-提交待审批15Security level下拉框固定值：L1-Public、L2-Internal、L3-Confidential、L4-Privatee) 以卡片样式展示Content。展示信息：asset title、asset tool、asset type、description、subject area、Owner（owned by department/owned by partner）、security level。
+    
+f) Content支持收藏，取消收藏操作。收藏成功的Content显示在metadata主页顶部。显示asset title，点击asset title，跳转到对应的content详情页。
+g) Content的页面跳转：Data dictionary跟Glossaries 跳转到对应的content详情页。其他（除了dictionary、glossaries）配置了asset link/location的跳转到url平台页面。
+h) 搜索：模糊搜索，支持对Content的asset title、description、keywords、category、glossaries字段的搜索。glossaries字段指资产颗粒度字段的搜索，包括：asset name、chinese name、subject area、asset type、acronym、alternate label、basic/derivative、is KPI、business definition、update data、status、Owned by department、Owned by partner。
+7. Glossaries Content详情页
+7.1. 界面展示
+
+7.2. 功能说明
+1. 若Content的asset type=”glossaries”或“all glossaries”，点击Content跳转到Glossaries Content详情页。
+2. Glossaries Content详情页展示最细粒度的metadata列表，包括：
+序号字段名控件举例说明1asset name文本 2Chinese name文本 3Subject area下拉框值在管理后台subject area模块配置，最高三级4Asset type下拉框值为category L2，即category L1=glossaries时，对应的第二层级的category的值5acronym文本6Alternate label文本7Basic/derivative下拉框固定值：basic、derivative8Is KPI下拉框固定值：true、false9Business definition文本10Status下拉框固定值：pending、approved、candidate。三种状态均由发布人手动维护，business owner可以修改。11Owned by department文本12Owner by partner文本13More details按钮跳转glossaries details页3. 搜索：Search，对全表字段的模糊查询；subject area：可多选，当Content的asset type=“all glossaries”时，subject area默认选“all”；asset type：metric、business term（即：category L2）；business owner：即Owned by department、Owned by partner、用户邮箱；Is KPI：All、True、False；Basic/derivative：All、Basic、derivative。
+4. Download glossaries：支持下载筛选条件下的资产列表数据。 
+5. More：点击每一行metadata的More按钮，跳转到Glossaries Details页。
+8. P0阶段metadata权限
+1. 功能权限：没有新增、上传、编辑、删除等功能，无需区分功能权限。 
+2. 数据权限：主要针对content详情页及Details页。Metadata主页的content数据所有用户均可以查看，但没有数据权限的用户，不能点击到Content详情页。支持对不同的用户角色通过绑定Subject areaL1~L3来设置数据权限。希望预留security level的数据权限，比如虽然有某个subject area的数据权限，但是该subject area 下的L3、L4的数据如果需要访问，仍然需要走线下申请。（下图为示例，最终权限矩阵会再提供）。
+
+二、项目P1、P2阶段OAH需求说明
+　　9. 
+10.  HOME
+10.1. 界面展示
+
+10.2. 功能说明
+1. 红框部分为下一阶段需求。
+10.2.1. 搜索框
+1. 模糊搜索：支持输入关键字进行模糊搜索，可以搜索以下字段中包含关键字的内容
+2. 最近搜索：点击展示最近搜索过的10个关键字，可以删除最近搜索
+3. 重置按钮：点击重置搜索框
+4. 精确搜索：点击展开精确搜索字段，具体字段为：
+5. 输入项：
+序号标题控件说明1模糊搜索文本框2最近搜索按钮3重置按钮4精确搜索按钮点击展开精确搜索查询框，再次点击收回精确框　　
+10.2.2. POPULAR REPORTS
+1. 默认展示 RECENT VIEWS tab可点击切换为POPULAR REPORTS tab。
+2. POPULAR REPORTS
+* popular reports模块tab。
+* 无论是否有权限 只要用户点击均记为一次浏览
+* 展示报表名称和【DETAIL】按钮，可点击报表名称直接跳转至改报表页面；点击【DETAIL】按钮，弹出more information窗口。
+* 若用户无报表权限，弹出more information窗口。
+11. REPORTING
+11.1. 界面展示
+
+11.2. 功能说明
+2. 页面划分多个模块，具体展示样式参考上方UI图。
+11.2.1. NAVIGATOR
+　　1. 左侧树状图展示报表类型，与下方reports and dashboards模块联动。选中的类型，展示在下方模块。
+　　2. 后续可根据系统管理-知识管理- navigator配置展示，与上传时的subject area字段对应，例navigator选择sales，则展示subject area1为sales的报表。
+　　3. 若用户ROLE所属CLT，则默认选中CLT类型，其他类型用户默认选中ALL，若用户无任何报表权限，navigator固定置灰，不可点击；若用户有部分权限，点击无权限分类时，右侧不展示报表，提示无权限。
+11.2.2. NOTIFICATIONS
+　　1. 消息模块默认为收起状态，展示最新一条，点击【view all】按钮，下拉模块，展示最新三条消息，按照时间倒序排序。新消息点击后仍展示。永远展示最新的三条信息。
+　　2. 若有新消息通知，交互样式参考如下：
+　　3. 展示方式：消息类型+报表名称+MM/DD/YYYY。（例：NEW Reinvention 11/21/2024）
+序号字段名控件说明1消息类型枚举值：NEW ITEM、UPDATED ITEM
+若报表卡片为首次上传，消息类型为new、若为修改类型updated
+NEW---绿色，UPDATE---蓝色2报表名称文本取上传时report name字段3日期日期控件取上传/更新报表时间4详情按钮点击【details】按钮，打开more information弹窗
+　　4. 点击消息，判断当前用户权限，若用户有点击的报表的权限，直接跳转到该报表；若用户没有权限，则打开more information窗口。
+11.2.3. MY FAVORITE REPORTS
+
+　　1. 此窗口默认为收起状态，点击右侧小三角展开；展示登录用户最新收藏的五条报表。
+　　2. 点击收藏的报表名称，判断当前用户权限，若用户有当前报表的权限，直接跳转到该报表；若用户没有权限，则打开more information窗口。
+　　3. 支持进行取消收藏操作，点击报表名左侧五角星，弹出确认取消收藏弹框；取消收藏后的报表不在该模块展示，自动填充最新的一条报表名称。
+　　4. 上下箭头按钮为排序功能，可以手动将报表列表进行排序。
+　　5. 删除按钮，点击可以将该条报表在收藏页面删除，即将该报表改为不收藏的状态。
+11.2.4. REPORTS AND DASHBOARDS
+　　1. 默认一行展示三个报表信息，超出三个鼠标向下滑动展示。
+　　2. P1阶段可以根据列表展示筛选下拉框，默认按照popularity进行排序。可以根据查询项进行查询：
+　　3. P1阶段的报表默认排序按照创建时间倒序排序。
+　　4. 规则说明：
+　　5. 查询项输入项
+序号字段名控件说明1Sort by下拉框默认选中Popularity
+枚举值包括：Popularity、Alphabetical by title、Create time、Last update time2搜索框搜索框默认显示文字“Reporting Search”，支持模糊搜索3重置图标点击重置，清空查询项，页面刷新，恢复到默认列表Advanced search1Business unit下拉框默认为空
+枚举值（暂定）：
+Department：Digital Ventures/ Marketing & Customer Engagement/ Operations/ Finance/ PRO/ Supply chain
+Team：MOD/MOP/Curbside/Ecommerce/Social Commerce/B2B/Wechat/Marketing/Member/ Operations/ FPA/ Accounting/ PRO/2TBD launch time日期控件默认为空，可选日期范围<=财年财月（接入内部日历数据）3Update time日期控件默认为空，可选日期范围<=财年财月（接入内部日历数据）4ADD NEW按钮点击按钮跳转到上传页面
+11.2.4.1. 上传
+规则说明：
+　　1. 点击【SUMBIT】时，校验必填项是否全部填写，若有未填写的字段，该字段红框展示，下方提示“please input”，不可提交成功。
+　　2. P0阶段，由数据部人员手动上传/修改报表，待后续开放用户上传报表功能，用户申请上传后，状态为未发布，审批通过后，状态变为已发布时，前端才展示上传的报表。
+　　3. 已发布的报表，在REPORTING-NOTIFICATION模块中展示，且用户可在报表管理模块，查看到自己上传的报表。
+　　4. 若用户在报表管理中下架或删除报表，REPORTING页面需要同步取消展示相应报表。
+　　5. 输入项：
+规则说明：
+6. 点击【SUMBIT】时，校验必填项是否全部填写，若有未填写的字段，该字段红框展示，下方提示“please input”，不可提交成功。
+7. P0阶段，由数据部人员手动上传/修改报表，待后续开放用户上传报表功能，用户申请上传后，状态为未发布，审批通过后，状态变为已发布时，前端才展示上传的报表。
+8. 已发布的报表，在REPORTING-NOTIFICATION模块中展示，且用户可在报表管理模块，查看到自己上传的报表。
+9. 若用户在报表管理中下架或删除报表，REPORTING页面需要同步取消展示相应报表。
+10. 输入项：
+序号字段名控件说明1REPORT NAME输入框必填项，默认为空，最大限制100字符
+注释：2REPORT DESCRIPTION-SHORT EN输入框必填项，默认为空，最大限制200字符，当系统语言为英文时展示3REPORT DESCRIPTION-DETAILED EN输入框必填项，默认为空，最大限制500字符，当系统语言为英文时展示4Report Description-Short CN输入框必填项，默认为空，最大限制200字符，当系统语言为中文时展示5REPORT DESCRIPTION-DETAILED CN输入框必填项，默认为空，最大限制500字符，当系统语言为中文时展示6Report URL输入框必填项，默认为空，最大限制200字符7Report Screenshot图片必填项，默认为空，校验只能上传一张图片8Display Platform单选按钮必填项，默认为空，
+枚举值：PC、Mobile9Department下拉框必填项，默认为空
+枚举值：Finance、Ops、PRO、DV、OPS、Marketing & Customer Experience、Product, R&D, SCO，Tech10Business Unit (optional)下拉框必填项，默认为空
+枚举值：MOD、MOP、Curbside、Ecommerce、Social Commerce、B2B、Wechat、Marketing、Member/、Operations、FPA、Accounting、PRO11Business Owner模糊搜索框必填项，默认为空
+与行内pro系统对接，可模糊搜索owner名称12Business Owner Email输入框必填项，默认为空
+当选中Business Owner时，自动带出其Email，不可修改13Data Domain 1下拉框必填项，默认为空
+枚举值：CLT?dashboards、sales、?promotion?&?campaign、customer、?store、ops、finance、supply?chain、legal、partner、organization、public?14Data Domain 2下拉框当domain1选择supply?chain时，枚举值为Supplier?&?vendor15Data Domain 3下拉框预留，暂不设置16Data Owner模糊搜索框必填项，默认为空
+与行内pro系统对接，可模糊搜索owner名称或AD账号17Data Owner Email输入框必填项，默认为空
+当选中Data Owner时，自动带出其Email，不可修改18Security Level下拉框必填项，默认为空
+枚举值：L4 - PRIVATE、L3 - CONFIDENTIAL、L2 - INTERNAL、L1 - PUBLIC19Cube type下拉框默认为空
+枚举值：Financial Cube、Inventory Cube、Roastery Cube、QA Cube20Data Tool下拉框必填项，默认为空
+枚举值：Power BI、Tableau、APP、Quick BI21state单选按钮必填项，默认为空
+枚举值：new、update22CANCEL按钮23SUBMIT按钮
+11.2.4.2. 详情
+序号字段名控件说明1report name文本取上传时report name字段2Report Screenshot图片取上传时Report Screenshot字段，支持放大查看3Description文本取上传时report description-short字段5Business Unit文本取上传时BUSINESS UNIT字段6Data Tool文本取上传时Data Tool字段7Department文本取上传时Department字段8Data Domain (s)文本取上传时Data Domain 1、Data Domain 2、Data Domain 3 三个字段，若有多个中间用逗号分隔9Business SME文本取上传时Business Owner、Business Owner EMAIL字段
+展示形式为Business Owner（Business Owner EMAIL）10Request access按钮点击打开报表申请页面11收藏图标按钮默认未收藏状态，点击收藏后，图标高亮显示12. METADATA主页
+12.1. 界面展示
+
+
+12.2. 功能说明
+1. METADATA PLATFORM MATRIX：元数据矩阵，行与列的数据均从配置模块读取。Subject area（列）支持在管理后台配置，三级，这里仅展示subject area L1，Category（行）支持在管理后台配置，二级，这里仅展示Category L1。
+2. 数据矩阵的Legend状态：AC-active content、ID-in development、NC-no content。AC状态由系统自动配置
+Legend状态说明AC-active content当矩阵内有status=approved的content时，系统自动打上AC状态，当legend状态为AC时，用户不能手动修改为ID或NC。ID-in developmentID状态由用户手动在管理后台设置，当矩阵内有status=approved的content时，系统自动将ID状态更新为AC状态NC-no contentNC状态由用户手动在管理后台设置，当矩阵内有status=approved的content时，系统自动将NC状态更新为AC状态。3. Content：资产内容组件，增加精确查询功能。查询项：subject area L1、subject area L2、subject area L3、language。均为下拉框，L1、L2、L3之间的下拉值有联动性，具体下拉的值从后台subject配置模块读取；Language为固定值，含en-英文、cn-中文、other-其他。
+
+4. Content：资产内容组件。默认生成一个all data dictionary的content，点击后跳转data dictionary的list。
+5. Content支持新增，配置了新增权限的用户可以新增。新增时需维护以下字段：
+序号字段名控件举例说明1asset title文本 2description文本 3Keywords文本4Asset link/location链接当asset type为glossaries、dictionary，Asset link置灰，不可配置。当asset type为其他值，Asset link可以配置链接5Asset tool下拉框固定值：ali、document、confluence、MDM、other6Asset type下拉框值为category L1，即第一层级的category的值7Owned by department文本8Owner by partner文本9Contact e-mail文本10Subject area L1下拉框非固定值，从管理后台配置项读取11Subject area L2(optional)下拉框选填，非固定值，从管理后台配置项读取，Subject area L2与Subject area L1的值有关联关系12Subject area L3(optional)下拉框选填，非固定值，从管理后台配置项读取，Subject area L3与Subject area L2的值有关联关系13Language下拉框固定值：en-英文、cn-中文、other14status下拉框固定值：pending-待提交/审批不通过，approved-审批通过，candidate-提交待审批
+新增时默认为：pending，不可修改15Security level下拉框固定值：L1-Public、L2-Internal、L3-Confidential、L4-Private6. 新增表单内容填写后，支持preview资产内容组件样式。用户可以选择保存、取消、提交。
+7. Content的status：
+a) Status的流转：
+
+b) 当status=pending时，发布人（即：当前用户账号）、business owner（即：owner by partner）均可查看、可编辑该Content。当发布人或business owner分别编辑content时，保存后，应同步修改的内容。（即保存后，双方均能看见对方修改后的内容）。
+c) 当status=candidate时，content不可编辑。发布人（即：当前用户账号）可以查看，line manager、business owner（即：owner by partner）、Data owner（管理后台配置）可以审批。
+d) 当status=approved且上下架状态为：上架时（上下架状态为管理后台content模块字段），具有该Content数据权限的用户均可以查看。发布人（即：当前用户账号）、business owner（即：owner by partner）可以编辑。
+8. Content支持编辑，所有字段均可以编辑。当status=candidate时，不允许编辑，当status=approved，编辑后，状态自动更新为pending。
+
+9. Content的审批：在管理后台，由line manager、business owner（即：owner by partner）、Data owner（管理后台配置）进行审批。当line manager审批通过后，若发布人与business owner是同一个人时，直接流转到Data Owner审核，若发布人与business owner不是同一个人时，先流转到business owner审核，审核通过后流转到Data owner审核。
+10. Content支持删除，仅支持删除status=pending的content。 
+13. Glossaries Content详情页
+13.1. 界面展示
+
+13.2. 功能说明
+1. Glossaries content支持编辑，两种方式：1）上传excel；2）表单在线编辑。
+2. 上传文件更新表格数据：具有编辑权限的用户导出现有表格数据excel后，更新部分数据，并上传更新后的表格。系统比对校验更新的字段内容。可编辑的字段如下：
+序号字段名控件举例说明1asset name文本 2Chinese name文本 3Subject area下拉框值在管理后台subject area模块配置，最高三级4Asset type下拉框值为category L2，即category L1=glossaries时，对应的第二层级的category的值5acronym文本6Alternate label文本7Basic/derivative下拉框固定值：basic、derivative8Is KPI下拉框固定值：true、false9Business definition文本10Status下拉框固定值：pending、approved、candidate。三种状态均由发布人手动维护，business owner可以修改。11Owned by department文本12Owner by partner文本3. Glossaries content页面的status：pending、approved、candidate。三种状态均由发布人手动维护，business owner可以修改。不需要经过实际的审批流。
+4. glossaries content支持在线编辑表格，具有编辑权限的用户点击【编辑】按钮后，表格界面变为可编辑，编辑后用户可以选择【保存】或【取消】，保存后更新成功。
+5. glossaries content支持新增、删除（待定）。
+14. Dictionary Content详情页
+14.1. 界面展示
+
+14.2. 功能说明
+1. 若Content的asset type=all Data dictionary ，点击Content跳转all data dictionary content详情页。All data dictionary content页显示以下字段：
+序号字段名控件举例说明1Subject area文本2Database文本3Schema文本4Table name文本5Table description文本6Owned by department文本7Owned by partner文本8More details按钮跳转下级details页2. All data dictionary content详情页支持搜索：对全部字段的模糊搜索，精确搜索：Subject area、table name。
+3. 若Content的asset type=Data dictionary ，点击Content跳转到Dictionary Content详情页。data dictionary content显示以下字段：
+序号字段名控件举例说明1Subject area文本2Database文本3Schema文本4Table name文本5Table description文本6Column name文本7Column description文本8Column type文本9Owned by department文本10Owned by partner文本11More details按钮跳转下级details页4. data dictionary content详情页支持搜索：对全部字段的模糊搜索，精确搜索：column name。
+5. Download template：支持下载筛选条件下的列表数据。 
+6. More：点击每一行metadata的More按钮，跳转到Dictionary content details页。
+7. Data dictionary content详情页支持编辑。
+a) 两种方式：1）上传excel编辑；2）表单在线编辑。
+b) 上传文件更新表格数据：具有编辑权限的用户导出现有表格数据excel后，更新部分数据，并上传更新后的表格。系统会比对校验更新的字段内容。可编辑的字段如下：
+序号字段名控件举例说明1Subject area文本2Database文本3Schema文本4Table name文本5Table description文本6Column name文本7Column description文本8Column type文本9Owned by department文本10Owned by partner文本c) 上传表格后，系统会校验字符格式，格式不正确会报错处理。
+d) 支持在线编辑表格，具有编辑权限的用户点击【编辑】按钮后，表格界面变为可编辑，编辑后用户可以选择【保存】或【取消】，保存后更新成功。
+8. Data Dictionary content支持新增、删除（待定）。
+15. Glossaries Details页
+15.1. 界面展示
+
+
+
+15.2. 功能说明
+1. 点击Glossaries Content详情页某一行metadata的More按钮，跳转到Glossaries Details页。
+2. 页面顶部标签显示：subject areaL1~L3、asset title、asset type的首字母缩写、asset name、type：即asset type、status。
+
+3. 左侧导航栏：Overview->tags、History、Files。
+4. Overview->tags：Description、Calculation Logic、Alternate Label、Business Rule、Is a key Performance indicator[YZ13] ？
+5. History：显示Glossaries Details页某一metadata行的所有字段的修改记录，包括Action（固定值：add、edit、delete）、Change before（即：某一字段修改前的值）、Change after（即：某一字段修改后的值）、Update by、Update date。同一个修改批次修改多个字段的展示在一行修改记录中。
+6. History支持搜索：Action（add、edit、delete）、who（即搜索：Update by）、Form to（YYYYMMDD-YYYYMMDD）。
+　
+7. Files：展示某一个metadata相关的文件列表。包括：File name、File type、Upload by、Update date、Security level。用户可以选择文件单个或批量下载。支持文件上传、删除。支持设置文件的security level。
+　
+16. P1-P2阶段metadata权限
+1. 功能权限：支持对不同的角色配置到页面按钮级别功能权限，比如新增：编辑、删除等。
+2. 数据权限：主要针对content详情页及Details页。Metadata主页的content数据所有用户均可以查看，但没有数据权限的用户，不能点击到Content详情页。支持对不同的用户/用户组通过绑定Subject areaL1~L3来设置数据权限。希望预留security level的数据权限，比如L3、L4的数据如果需要访问，需要走线下申请。比如虽然有某个subject area的数据权限，但是该subject area 下的L3、L4的数据如果需要访问，仍然需要走线下申请。
+三、项目P1、P2阶段 系统管理需求
+17. 后台功能列表
+
+18. 用户管理
+18.1. 用户管理
+　　从NPC同步伙伴信息，提供用户信息查询，并支持赋予用户平台角色的功能。
+18.1.1. 界面展示
+　　
+18.1.2. 功能说明
+1. 通过列表展示系统全部用户，页面中部展示用户列表。列表上方为查询区域、功能按钮区域，下方有翻页区域、页码显示。系统支持针对用户赋予平台角色。
+2. 业务规则：
+* 从NPC同步的用户信息可以直接登录OAH系统。
+* 未分配角色的用户，登录OAH、管理后台时，系统默认分配普通用户的角色。
+* 对用户赋予平台角色，展示角色列表，系统预置的角色（系统管理员、业务管理员、普通用户）置顶。角色列表支持单选。
+3. 下列为查询项字段说明：
+序号字段名控件说明1. 姓名输入框默认值为空，支持模糊搜索2. AD账号输入框默认值为空，支持模糊搜索3. 邮箱输入框默认值为空，支持模糊搜索4. Department1下拉框默认值为空，枚举值从NPC同步5. Department2下拉框默认值为空，枚举值从NPC同步，与Department1有数据联动6. 组织架构下拉框默认All，枚举值固定：OPS营运组织架构、SC7. 在职状态下拉框默认All，枚举值固定：在职、离职8. 平台角色下拉框默认值为空，枚举值来源于角色管理模块9. 伙伴属性下拉框默认All，枚举值固定：PSP、FTE   下列为列表字段说明：
+序号字段控件说明1. 姓名输入框从NPC同步2. AD账号输入框从NPC同步3. 伙伴属性下拉框从NPC同步4. Department1下拉框从NPC同步5. Department2下拉框从NPC同步6. 组织架构下拉框从NPC同步7. 在职状态下拉框从NPC同步8. 平台角色下拉框枚举值来源于角色管理模块18.2. 用户组管理
+　　用户组的增删改查管理。包括动态用户组、静态用户组。静态用户组支持层级配置。
+18.2.1. 用户组列表
+18.2.1.1. 界面展示
+
+18.2.1.2. 功能说明
+1. 页面左侧展示所有的用户组，右侧展示某个用户组下的用户信息。用户组、用户信息均支持搜索。
+2. 下列为页面左侧的用户组字段说明：
+序号字段名控件说明1. 用户组类型String标签形式展示用户组类型：动态用户组、静态用户组2. 用户组名称String3. 用户数Int该用户组下的用户数4. 操作项按钮动态用户组：编辑、删除；
+静态用户组：编辑、删除、添加子用户组下列为用户组列表的搜索项：
+序号字段名控件说明1. 用户组类型下拉框固定值，静态用户组、动态用户组2. 用户组名称输入框支持模糊搜索下列为页面右侧的用户字段说明：
+序号字段名控件说明1. 用户组名称String2. 用户组类型String动态用户组、静态用户组3. 更新时间/同步时间时间静态用户组展示更新时间，动态用户组展示同步时间4. 姓名输入框从NPC同步5. AD账号输入框从NPC同步6. 伙伴属性下拉框从NPC同步7. Department1下拉框从NPC同步8. Department2下拉框从NPC同步9. 组织架构下拉框从NPC同步10. 在职状态下拉框从NPC同步下列为用户列表的搜索项：
+序号字段名控件说明1. 姓名输入框默认值为空，支持模糊搜索2. AD账号输入框默认值为空，支持模糊搜索3. 邮箱输入框默认值为空，支持模糊搜索4. Department1下拉框默认值为空，枚举值从NPC同步5. Department2下拉框默认值为空，枚举值从NPC同步，与Department1有数据联动6. 在职状态下拉框默认All，枚举值固定：在职、离职18.2.2. 新增用户组
+18.2.2.1. 界面展示
+
+
+
+
+
+18.2.2.2. 功能说明
+1. 支持添加静态用户组、动态用户组。静态用户组支持层级配置，支持2级。添加用户组的入口：用户组管理列表页右上角的【添加用户组】按钮，添加子用户组的入口：在用户组列表，点击静态用户组后的【添加子用户组】按钮。
+2. 下列为新增静态用户组的字段：
+序号字段名控件说明1. 用户组类型单选动态用户组、静态用户组2. 父用户组下拉框选填3. 用户组名称输入框用户组名称不能重复。4. 关联用户表单列表展示所有用户信息，支持按条件搜索快速关联用户5. 批量删除按钮关联用户表单，已关联的用户支持批量删除6. 确认新增按钮点击新增，系统做以下检验：
+1、用户组名称不能重复7. 返回按钮返回上一级页面下列为新增动态用户组的字段：
+序号字段名控件说明1. 用户组类型单选动态用户组、静态用户组2. 用户组名称输入框用户组名称不能重复。3. 关联用户条件支持通过：组件架构、department1、department2、在职状态的条件关联用户4. 预览按钮点击预览按钮，显示条件下关联的动态用户列表，支持按：姓名、AD账号、邮箱模糊搜索5. 确认新增按钮点击新增，系统做以下检验：
+1、用户组名称不能重复
+2、子用户组内的用户需包含在父用户组内，校验通过则新增成功，否则弹框提示且新增失败。6. 返回按钮返回上一级页面下列为在用户组列表，点击静态用户组的【添加子用户组】按钮后的弹框字段：
+序号字段名控件说明1. 父用户组名称String固定值，直接从用户组列表带出父用户组名称，不能修改2. 子用户组名称String用户组名称不能重复3. 确认按钮点击新增，系统做以下检验：
+1、用户组名称不能重复
+校验通过则新增成功 4. 取消按钮新增子用户组的弹框消失18.2.3. 编辑用户组
+　　编辑功能同新增。
+18.2.4. 删除用户组
+18.2.4.1. 界面展示
+
+18.2.4.2. 功能说明
+　　用户组支持删除。删除后该用户组内用户的相应权限也会被同步删除。
+18.3. 角色管理
+　　系统角色的增删改查管理，支持自定义角色和对应的功能权限。
+18.3.1. 角色列表
+18.3.1.1. 界面展示
+
+
+18.3.1.2. 功能说明
+1. 页面左侧展示角色列表，系统预置：系统管理员、业务管理员、普通用户三个角色。页面右侧展示某个角色的功能权限、用户信息。
+2. 功能权限：管理后台仅支持一级菜单配置；菜单层级管理（即用户端）支持页面层级配置，支持二级，第二级可以为页面的子模块或功能点。
+3. 下列为页面左侧角色列表字段：
+序号字段名控件说明1. 角色名称String2. 预置角色String若为预置角色，需在角色列表置顶，且标记为：预置3. 操作项按钮编辑 下列为页面右侧角色用户字段：
+序号字段名控件说明1. 姓名输入框从NPC同步2. AD账号输入框从NPC同步3. 伙伴属性下拉框从NPC同步4. Department1下拉框从NPC同步5. Department2下拉框从NPC同步6. 组织架构下拉框从NPC同步7. 在职状态下拉框从NPC同步下列为页面右侧角色用户的搜索项：
+序号字段名控件说明1. 姓名输入框默认值为空，支持模糊搜索2. AD账号输入框默认值为空，支持模糊搜索3. 邮箱输入框默认值为空，支持模糊搜索4. Department1下拉框默认值为空，枚举值从NPC同步5. Department2下拉框默认值为空，枚举值从NPC同步，与Department1有数据联动6. 在职状态下拉框默认All，枚举值固定：在职、离职
+18.3.2. 新增角色
+18.3.2.1. 界面展示
+
+18.3.2.2. 功能说明
+1. 支持新增角色。输入角色名称、对角色赋予功能权限。
+2. 下列为新增角色的字段
+序号字段名控件说明1. 角色名称输入框不允许重复2. 功能权限多选管理后台仅支持一级菜单配置；菜单层级管理（即用户端）支持页面层级配置，支持二级，第二级可以为页面的子模块或功能点18.3.3. 关联用户
+18.3.3.1. 界面展示
+
+
+18.3.3.2. 功能说明
+　　支持针对某个角色关联用户。关联成功后该用户具有该角色对应的功能权限。
+19. 应用管理
+19.1. 报表管理>报表管理
+　　报表的增删改查管理。
+19.1.1. 报表列表
+19.1.1.1. 界面展示
+
+19.1.1.2. 功能说明
+1. 列表展示所有的报表信息。支持模糊搜索。
+2. 以下为报表列表字段：
+序号字段名控件说明1. Report编号Int系统按规则生成，唯一编号2. Report name输入框用户手动维护3. Display platform下拉框用户手动维护，固定值：PC、Mobile。单选4. Department1下拉框用户手动维护，枚举值从NPC同步5. Department2下拉框用户手动维护，枚举值从NPC同步，Department2与Department1有数据关联6. Data domain1下拉框用户手动维护，枚举值即[管理后台-Subject管理模块]的Subject area L17. Data domain2下拉框用户手动维护，枚举值即[管理后台-Subject管理模块]的Subject area L28. Data domain1下拉框若该报表多规（即属于多个不同的data domian），列表展示时都显示出来9. Data domain2下拉框10. Business owner ad下拉框用户手动维护，枚举值从NPC同步11. Business owner name下拉框用户手动维护，枚举值从NPC同步；AD与姓名是一 一对应的12. Data product owner ad下拉框用户手动维护，枚举值从NPC同步13. Data product owner name下拉框用户手动维护，枚举值从NPC同步；AD与姓名是一 一对应的14. Data developer ad下拉框用户手动维护，枚举值从NPC同步15. Data developer name下拉框用户手动维护，枚举值从NPC同步；AD与姓名是一 一对应的16. Security level下拉框用户手动维护，枚举值固定：L1-PUBLIC、L2-INTERNAL、L3-CONFIDENTAL、L4-PRIVATE。单选17. Report Description-short EN输入框用户手动维护18. Report Description-Detailed EN输入框用户手动维护19. Report Description-short CN输入框用户手动维护20. Report Description-Detailed CN输入框用户手动维护21. 是否属于营运架构报表单选固定值：是、否22. Exposure to CLT单选固定值：是、否23. 状态String固定值：Pending、Completed。由系统根据规则生成。
+当表格的3个tab没完全维护好时，显示为Pending，否则显示为Completed。24. 操作项按钮详情、编辑、删除以下为搜索查询表项字段：
+序号字段名控件说明1. Report name输入框支持模糊搜索匹配2. Data domain1下拉框枚举值即[管理后台-Subject管理模块]的Subject area L1，支持模糊搜索匹配3. 一级部门下拉框NPC同步部门字段4. 二级部门下拉框NPC同步部门字段5. 报表类型下拉框枚举值：Tableau,QuickBi,Sensors,Hub,Others,H5[AHL14]6. 报表状态下拉框枚举值固定：待发布，已发布，配置报表的基本信息，配置报表的审批流，审批发布 7. 是否属于营运架构报表单选固定值：是、否8. Exposure to CLT单选固定值：是、否9. 是否只存在于Hub单选下拉框[AHL15]10. 是否Module 管控单选下拉框[AHL16]11. 操作项按钮查询、重置
+19.1.2. 新增报表
+19.1.2.1. 界面展示
+
+
+
+19.1.2.2. 功能说明
+1. 支持通过表单单个新增报表。新增报表需由不同的角色先后维护3个tab，由业务伙伴维护的基础信息1，由Data Product Owner维护的基础信息2，由Business Owner维护的审批信息。
+2. 当业务伙伴的基础信息1tab维护好，点击提交按钮后，校验该Tab下的必填项，邮件通知在基础信息1中的Data Product Owner。当业务伙伴的基础信息2tab维护好，点击提交按钮后，校验该Tab下的必填项，邮件通知基础信息2中的Business Owner。
+3. 下列为新增报表-基础信息1（业务伙伴）的字段：
+序号字段名控件说明1. Report name输入框用户手动维护2. Display platform下拉框用户手动维护，固定值：PC、Mobile。单选3. Department1下拉框用户手动维护，枚举值从NPC同步4. Department2下拉框选填，用户手动维护，枚举值从NPC同步，Department2与Department1有数据关联5. Data product owner ad下拉框用户手动维护，枚举值从NPC同步6. Report Description-short EN输入框用户手动维护7. Report Description-Detailed EN输入框用户手动维护8. Report Description-short CN输入框用户手动维护9. Report Description-Detailed CN输入框用户手动维护10. Report Screenshot图片单张11. 是否属于营运架构报表单选固定值：是、否12. Exposure to CLT单选固定值：是、否13. 操作项按钮返回：返回上一页
+提交：校验必填项后，生成一条报表数据，状态为pending，且邮件通知Data Product Owner4. 下列为新增报表-基础信息2（Data Product Owner）的字段：
+序号字段名控件说明1. Data domain1下拉框单选，用户手动维护，枚举值即[管理后台-Subject管理模块]的Subject area L12. Data domain2下拉框单选，选填，用户手动维护，枚举值即[管理后台-Subject管理模块]的Subject area L23. Data domain3下拉框单选，选填，用户手动维护，枚举值即[管理后台-Subject管理模块]的Subject area L34. 按钮支持增加、删除Data domain组，即同一张报表支持属于多个不同的Data domain组5. Business owner ad下拉框用户手动维护，枚举值从NPC同步6. Data product owner ad下拉框用户手动维护，枚举值从NPC同步7. Data developer ad下拉框用户手动维护，枚举值从NPC同步8. Security level下拉框用户手动维护，枚举值固定：L1-PUBLIC、L2-INTERNAL、L3-CONFIDENTAL、L4-PRIVATE。单选9. Data Tool下拉框固定下拉值，单选10. Report Url链接必填5. 下列为新增报表-基础信息2-行列级权限配置的字段：
+序号字段名控件说明1. 是否对Module管控单选固定值：是、否2. Module的值输入框当是否对Module管控为：是时，才需维护3. 表名输入框当是否对Module管控为：是时，才需维护，选填4. 字段名输入框当是否对Module管控为：是时，才需维护，选填5. 是否对Metrics管控单选固定值：是、否6. Metrics的值输入框当是否对Metrics管控为：是时，才需维护7. 表名输入框当是否对Metrics管控为：是时，才需维护，选填8. 字段名输入框当是否对Metrics管控为：是时，才需维护，选填9. 是否对Store Scope管控单选固定值：是、否10. 表名输入框当是否对Store Scope管控为：是时，才需维护，选填11. 字段名输入框当是否对Store Scope管控为：是时，才需维护，选填12. 操作项按钮返回：返回上一页
+提交：校验必填项后，状态为pending，且邮件通知Business Owner6. 下列为新增报表-审批信息的字段：
+序号字段名控件说明1. 审批节点1-角色下拉框枚举值固定：Line Manager、Agent Preliminary、Business Owner。单选2. AD账号下拉框当角色选择为：Line Manager，AD账号不用填；当角色选择为：Agent Preliminary、Business Owner，需维护AD账号
+输入AD后，系统将用户姓名显示在后面3. 操作按钮新增、删除；支持针对审批节点、AD账号新增下一组或删除4. 页面操作按钮返回：返回上一页
+提交：校验必填项后，更新报表信息，且状态为completed。
+19.1.3. 编辑报表
+　　编辑功能同新增。
+19.1.4. 删除报表
+19.1.4.1. 界面展示
+
+19.1.4.2. 功能说明
+报表支持删除。删除后该报表对所有用户不可见。
+19.2. 报表管理>报表源管理
+19.2.1.1. 界面展示
+
+19.2.1.2. 功能说明
+1. 报表源管理，支持配置、编辑、删除报表源信息并显示PowerBI的同步结果。同步失败的报表源，支持手动同步。
+2. 下列为报表源列表字段：
+序号字段名控件说明1. Report 编号同步报表管理中的Report编号2. OAH Report nameString同步报表管理中的Report name3. UsernameString4. PasswordString5. Report URL链接同步报表管理中的Report URL6. Diver_class_nameString7. Source TypeString8. Data_base_nameString9. DomainString同步报表管理中的Domain10. Source nameString11. AppendString12. Link_URL链接13. Open_taskString14. Latest Task Time（最后同步时间）时间15. Latest Task Status(最后同步状态)String成功、失败16. Access_IDString17. Access_secretString18. 操作按钮同步、批量同步19.3. Metadata管理>Subject area配置
+　　Subject area的增删改查管理，支持排序，设置是否可视。
+19.3.1. Subject area列表
+19.3.1.1. 界面展示
+
+19.3.1.2. 功能说明
+1. 列表展示Subject area数据，分为metadata、report两个tab。支持模糊搜索。报表的Subject area L1、 Subject area L2、Subject area L3，metadata、report单独配置，单独设置排序及是否可视。
+2. 支持设置Subject area L1、Subject area L2、Subject area L3是否可视，当设置成不可视时，用户端metadata首页的METADATA PLATFORM MATRIX看不见该Subject area。
+3. 支持对Subject area L1、Subject area L2、Subject area L3排序，根据排序结果展示在户端metadata首页的METADATA PLATFORM MATRIX，及在相应subject area下拉列表的值。
+4. 下列为Subject area列表字段：
+序号字段名控件说明1. Subject area L1下拉框枚举值由用户维护2. Subject area L2下拉框枚举值由用户维护3. Subject area L3下拉框枚举值由用户维护4. 是否可视下拉框是、否5. 更新人String显示更新人姓名6. 更新时间String比如：2025-03-20 10:307. 操作项按钮编辑、删除、设置可视、设置不可视5. 下列为Subject area列表搜索项字段：
+序号字段名控件说明1. Subject area L1下拉框枚举值由用户维护，Subject area L3，L1/ L2/ L3之间有数据联动关系2. Subject area L2下拉框枚举值由用户维护，Subject area L3，L1/ L2/ L3之间有数据联动关系3. Subject area L3下拉框枚举值由用户维护，Subject area L3，L1/ L2/ L3之间有数据联动关系4. 是否可视下拉框是、否5. 更新人String支持模糊搜索匹配6. 更新时间String精确查询，支持按一段时间查询
+19.3.2. Subject area新增
+19.3.2.1. 界面展示
+
+19.3.2.2. 功能说明
+1. Metadata、Report均支持新增Subject area L1、Subject area L2、Subject area L3。
+2. 下列为新增Subject area字段：
+序号字段名控件说明1. Subject area层级单选固定值：Subject area L1、Subject area L2、Subject area L32. Subject area L1下拉框、输入框若用户选择新增Subject area L1，则Subject area L1为输入框，否则为下拉框3. Subject area L2下拉框、输入框若用户选择新增Subject area L2，则Subject area L2为输入框，否则为下拉框4. Subject area L3输入框若用户选择新增Subject area L3，则需要维护，否则不需要19.3.3. subject area删除
+19.3.3.1. 界面展示
+
+19.3.3.2. 功能说明
+　　Subject area支持删除。当Subject area下有content或reporting数据时，不允许删除。
+19.4. Metadata管理>Category配置
+　　Category的增删改查管理，支持排序，设置是否可视。
+19.4.1. Category列表
+19.4.1.1. 界面展示
+
+19.4.1.2. 功能说明
+1. Category列表展示：Category L1、Category L2 - asset type、是否可视、更新人、更新时间、操作：编辑、删除、设置可视。支持Category的增删改查。category配置模块无需区分数据权限。
+2. 搜索项：Category L1、Category L2 - asset type，L1/ L2之间有数据联动关系，是否可视：全部、是、否，更新人、更新时间。
+3. Category新增，最高支持二级，字段如下：
+序号字段名控件举例说明1Category层级单选固定值：category L1、category L22Category L1下拉框、输入框若用户选择新增Category L1，则Category L1为输入框，否则为下拉框3Category L2 - asset type输入框若用户选择新增Category L2，则Category L2为输入框，否则为下拉框4. Category编辑，可编辑项：Category L1、Category L2的值。
+5. Category删除：当Category下有content数据时，不允许删除。
+6. 其余操作：
+a) 支持设置Category L1、Category L2是否可视，当设置成不可视时，用户端metadata首页的METADATA PLATFORM MATRIX看不见该Category。
+b) 支持对Category L1、Category L2排序，根据排序结果展示在户端metadata首页的METADATA PLATFORM MATRIX。
+19.5. Metadata管理>Matrix管理
+19.5.1.1. 界面展示
+
+
+19.5.1.2. 功能说明
+1. 根据【Subject area配置】的Subject area L1生成Matrix的列，【Category配置】的Category L1生成Matrix的行。不论Subject area L1、Category L1是否设置为可视均显示。但设为不可视的列或行背景置灰显示。
+2. 元数据矩阵的Legend状态：AC-active content、ID-in development、NC-no content。默认为NC状态，支持用户手动设置ID、NC、AC状态。（当ID状态有审批通过的资产时，系统自动修改状态为AC）。
+Legend状态说明AC-active content当矩阵内有status=approved的content时，系统自动打上AC状态，或用户手动设置为AC状态。ID-in developmentID状态由用户手动设置。当矩阵内有status=approved的content时，系统自动或用户手动将ID状态更新为AC状态。NC-no contentNC状态由用户手动设置，当矩阵内有status=approved的content时，系统自动或用户手动将NC状态更新为AC状态。3. Matrix配置：不支持直接在表单编辑状态，单个点击编辑出弹框后，在弹框维护状态。
+19.6. Metadata管理>Content管理
+19.6.1.1. 界面展示
+Content管理：列表页
+
+Content管理：新增页
+
+19.6.1.2. 功能说明
+1. Content列表展示所有status的数据，包括candidate、approved。
+2. 下列为Content列表页字段：
+序号字段名控件举例说明1Content编号Int系统自动生成，编号唯一2asset title文本3Subject area L1下拉框非固定值，从管理后台配置项读取4Subject area L2下拉框非固定值，从管理后台配置项读取，Subject area L2与Subject area L1的值有关联关系5Subject area L3下拉框非固定值，从管理后台配置项读取，Subject area L3与Subject area L2的值有关联关系6Category下拉框值为category L1，即这里仅需要用户选择第一层级的category的值7Asset type下拉框值为category L2 8status下拉框枚举值固定：Candidate、approved9Security level下拉框固定值：L1-Public、L2-Internal、L3-Confidential、L4-Private10description文本 11Keywords文本12Asset link/location链接13Asset tool下拉框固定值：Ali、document、confluence、MDM、other14Owned by department1下拉框从NPC同步15Owned by department2下拉框从NPC同步16Owned by partner AD文本17Owned by partner 姓名文本18Contact e-mail文本自动带出，owned by partner的e-mail19Upload by文本更新人/上传人20Language下拉框固定值：en-英文、cn-中文、other21更新时间时间22上下架状态文本status=Approved的上下架状态默认为：上架；用户可以操作下架；上下级不会影响status23操作按钮见下表
+序号Status上下架状态不同状态下对应的操作项1candidate编辑、删除、content详情2Approved上架编辑、删除、下架、content详情3Approved下架编辑、删除、上架、content详情3. Content列表支持搜索：Content编号、asset title、subject area L1、subject area L2、subject area L3、category、asset type、status、上下架状态、security level、description、keywords、asset tool、owned by department1、owned by department2、owned by partner(姓名)、owned by partner(AD)、contact e-mail、更新时间、Subject area L1/ L2/ L3之间有数据联动关系，支持模糊搜索匹配。
+4. Content支持新增、编辑、删除、上下架、查询。
+5. Content新增支持通过表单单个新增，表单新增需要维护以下字段：
+序号字段名控件举例说明1asset title文本 2Subject area L1下拉框非固定值，从管理后台配置项读取3Subject area L2(optional)下拉框选填，非固定值，从管理后台配置项读取，Subject area L2与Subject area L1的值有关联关系4Subject area L3(optional)下拉框选填，非固定值，从管理后台配置项读取，Subject area L3与Subject area L2的值有关联关系5Category下拉框值为category L1，即这里仅需要用户选择第一层级的category的值6Asset type下拉框值为category L2 7status下拉框固定值：candidate、approved。单选8Security level下拉框固定值：L1-Public、L2-Internal、L3-Confidential、L4-Private9description文本 10Keywords文本11Asset link/location链接当asset type为glossaries、dictionary，Asset link置灰，不可配置。当asset type为其他值，Asset link可以配置链接12Asset tool下拉框固定值：Ali、document、confluence、MDM、other13Owned by department1下拉框从NPC同步14Owned by department2下拉框从NPC同步15Owned by partner姓名下拉框若用户输入姓名，则系统带出Owned by partner AD16Owned by partner AD下拉框若用户输入Owned by partner AD，则系统带出姓名17Contact e-mail文本自动带出，owned by partner的e-mail18Language下拉框固定值：en-英文、cn-中文、other6. Content编辑：所有字段均可以编辑。
+7. Content支持删除。candidate和approved状态的content均支持删除。
+8. Content上下架：approved状态的content可以下架，下架后在用户端不再展示，下架的content可以重新上架。上架后会在用户端展示。如果资产是再次上架，则status跟下架前一样。上下架不会改变status。
+19.7. Glossaries Content详情
+19.7.1.1. 界面展示
+Content管理>Glossaries content详情页：
+
+Content管理>Glossaries content详情页>More details/metric& business term：
+
+Content管理>Glossaries content详情页>More details/files：
+
+19.7.1.2. 功能说明
+1. 点击Content列表页操作项的【content详情】按钮，当asset type=“glossaries“时，跳转到glossaries content详情页。
+2. Glossaries content列表展示：asset name、Chinese name、subject area（需展示subject areaL1> subject areaL2> subject areaL3）、category、asset type、acronym、alternate label、basic/derivative、is KPI、business definition、update date、status、owned by department、owned by partner、contact e-mail、more。
+3. Glossaries content支持搜索：asset name、Chinese name、subject area、category、asset type、acronym、alternate label、basic/derivative、is KPI、business definition、update date、status、owned by department、owned by partner、contact e-mail。支持模糊搜索匹配。
+4. Glossaries Content支持新增、编辑、删除、查询。
+5. Glossaries Content新增支持通过模板批量新增、页面表单单个新增：
+a) 当category为“glossaries“，新增时需维护以下字段，business term和metric共用一套字段，：
+序号字段名控件举例说明1asset name文本 2Chinese name文本 3Subject area下拉框值在管理后台subject area模块配置，最高三级4Asset type下拉框category L2，即category L1=glossaries时，对应的第二层级的category的值5acronym文本6Alternate label文本7Alternate label-cn8Basic/derivative下拉框固定值：basic、derivative9Is KPI下拉框固定值：true、false10Business definition文本1112Description example13Dataset技术字段，暂时不需要，未来会加上14Ali DC技术字段，暂时不需要，未来会加上15Sales cube技术字段，暂时不需要，未来会加上16Calculation logic技术字段，暂时不需要，未来会加上17Data source system技术字段，暂时不需要，未来会加上18database技术字段，暂时不需要，未来会加上19schema技术字段，暂时不需要，未来会加上20table技术字段，暂时不需要，未来会加上21column技术字段，暂时不需要，未来会加上22取数逻辑技术字段，暂时不需要，未来会加上23数据类型技术字段，暂时不需要，未来会加上24Referenced in policy管理字段，暂时不需要，未来会加上25Defined in policy管理字段，暂时不需要，未来会加上26Status下拉框固定值：pending、approved、candidate。三种状态均由发布人手动维护，business owner可以修改。27Owned by department文本28Owner by partner文本29Contact e-mail30参与编制者文本伙伴名字31Global reference管理字段，暂时不需要，未来会加上6. Glossaries content编辑：支持通过模板进行编辑。用户点击【下载模板】，在模板维护content数据，【上传】，系统会进行规则校验，校验通过后提示上传成功，只要有校验失败的数据，则整个上传失败，用户可以【下载错误报告】查看失败原因。编辑模板的字段和新增字段一致（覆盖上传）。也支持在页面每一行后面点击【编辑】按钮，在页面单行编辑。
+7. Glossaries content删除：点击操作项的【删除】按钮，支持对Glossaries content删除，删除时需要二次确认弹框让用户确认后，进行删除。
+8. More details：点击More details的【More】按钮，跳转到More details页。More details页包含tags、files两个tab。more details-tags：按Business attributes、Tech. attributes、Management attributes分别展示详细字段信息。
+9. more details-files：展示file name、file type、upload by、upload date、security level、操作项：下载、编辑、删除。点击【编辑】后，可编辑file name、security level。支持上传。
+10. 导出：支持按筛选条件后的数据进行导出。
+19.8. Dictionary Content详情
+19.8.1.1. 界面展示
+Content管理>Dictionary content详情页：
+
+19.8.1.2. 功能说明
+1. 点击Content列表页操作项的【content详情】按钮，当asset type=“dictionary“时，跳转到dictionary content详情页。
+2. Dictionary content列表展示：subject area（需展示subject areaL1> subject areaL2> subject areaL3）、database、schema、table name、table description、column name、column description、column type、update date、owned by department、owned by partner、contact e-mail、upload by partner、more。
+3. Dictionary content支持搜索： subject area、database、schema、table name、table description、column name、column description、update date（时间区间）、owned by department、owned by partner、contact e-mail、upload by partner。支持模糊搜索匹配。
+4. Dictionary Content支持新增、编辑、删除、查询。
+5. Dictionary Content新增支持通过模板批量新增、页面表单单个新增，需维护以下字段：
+序号字段名控件举例说明1Subject area文本2Database文本3Schema文本4Table name文本5Table description文本6Column name文本7Column description文本8Column type文本9Owned by department文本10Owned by partner文本6. Dictionary content编辑：支持通过模板进行编辑。用户点击【下载模板】，在模板维护content数据，【上传】，系统会进行规则校验，校验通过后提示上传成功，只要有校验失败的数据，则整个上传失败，用户可以【下载错误报告】查看失败原因。编辑模板的字段和新增字段一致（全量覆盖）。也支持在页面每一行后面点击【编辑】按钮，在页面单行编辑。
+7. Dictionary content删除：点击操作项的【删除】按钮，支持对Dictionary content删除，删除时需要二次确认弹框让用户确认后，进行删除。
+8. More details：点击More details的【More】按钮，跳转到More details页。
+9. 导出：支持按筛选条件后的数据进行导出。
+
+19.9. Cube管理[EHC17]
+
+19.10. My Favourite管理
+　对非门店伙伴配置My Favourite的指标权限。
+19.10.1.1. 界面展示
+My favourite-按用户：
+
+
+
+My favourite-按用户组：
+
+My favourite-添加权限-按用户：
+
+19.10.1.2. 功能说明
+1. 支持对My favourite的指标按用户、按用户组配置查看权限。
+2. 若同一个指标既按用户，也按用户组配置了查看权限，则取用户、用户组人员信息的合集。即这些人都可以查看该指标。
+3. 下列为My favourite管理-按用户的字段：
+序号字段名控件说明1. 指标名称文本2. 已授权用户Int该指标已授权的用户数3. 用户姓名文本显示全量的用户列表，包括已授权指标的用户，未授权指标的用户。已授权指标的用户置顶显示4. AD账号文本5. 查看多选框配置查看权限6. 截止时间时间YYYY-MM-DD，指标权限的截止时间4. 下列为My favourite管理-按用户组的字段：
+序号字段名控件说明1. 指标名称文本2. 已授权用户组Int该指标已授权的用户组数3. 用户组名称文本显示全量的用户组列表，包括已授权指标的用户组，未授权指标的用户组。已授权指标的用户组置顶显示4. 用户人数 Int用户组对应的用户数5. 查看多选框配置查看权限6. 截止时间时间YYYY-MM-DD，指标权限的截止时间5. 下列为My favourite管理-按用户的搜索项：
+序号字段名控件说明1. 指标名称输入框支持模糊搜索匹配2. 用户姓名输入框支持模糊搜索匹配3. AD账号输入框支持模糊搜索匹配4. 邮箱 输入框支持模糊搜索匹配5. 操作项按钮查询、重置6. 下列为My favourite管理-按用户组的搜索项：
+序号字段名控件说明1. 指标名称输入框支持模糊搜索匹配
+19.11. Reference管理
+　Data Team各个工具的介绍，及教学素材管理。
+19.11.1.1. 界面展示
+Resources列表：
+
+Data Tools列表：
+
+Resources列表 - 新增Resource：
+
+
+
+Data Tools列表-新增Data Tool：
+
+19.11.1.2. 功能说明
+1. Reference列表按Resources、Data Tools两个tab展示数据，支持新增、编辑、删除、查询。
+2. Resources列表展示：图片、排序、更新人、更新时间、操作：删除、编辑。
+3. Data Tools列表展示：工具名称、工具介绍、更新人、更新时间、操作：删除、编辑。
+4. 新增Resources需维护以下字段：
+序号字段名控件说明1. 图片图片2. 内容单选文件、视频、链接。支持上传文件或上传视频或跳转到链接的落地页3. 排序Int设置排序，1-20，排序先后决定在OAH portal端展示的先后顺序4. 操作按钮返回、提交5. 新增Data Tool需维护以下字段：
+序号字段名控件说明1. 工具名称下拉框枚举值固定：Power BI、Tableau、Cube、Sensor,H52. 工具介绍文本3. 申请流程文件支持上传文件4. 补充信息富文本非必填项，支持文字、图片、链接5. 操作按钮返回、提交
+20. 权限管理
+20.1. 报表Expose权限
+　　支持用户/用户组对于报表主题及主题下报表的Expose配置。
+20.1.1. Expose权限列表
+20.1.1.1. 界面展示
+
+
+20.1.1.2. 功能说明
+1. 页面左侧展示报表的Data Domain，默认收缩，展示Data Domian1。点击展示显示Data Domian2、Data Domain3，及每个Data Domian下的报表。页面右侧显示左边报表已授权Expose权限的用户组。
+2. 下列为页面右侧的“已授权用户组“的字段：
+序号字段名控件说明1用户组名称文本显示对应左边报表，已授权Expose权限的用户组名称2用户人数Int每个用户组对应的用户人数3截止时间时间报表Expose权限的截止时间3. 下列为条件搜索的字段：
+序号字段名控件说明1. Data Domian下拉框包括Data Domain1>Data Domain2>Data Domian3，枚举值从Subject area配置模块读取2. Report Name输入框支持模糊搜索匹配3. 操作项按钮查询、重置20.1.2. 添加Expose权限
+20.1.2.1. 界面展示
+
+20.1.2.2. 功能说明
+1. 支持对报表匹配设置Expose权限。
+2. 下列为批量设置Expose权限的字段：
+序号字段名控件说明1. 报表文本按Data Domian的层级结构展示所有的报表，支持用户按Data Domain，或按报表配置Expose2. 用户组文本显示全量的用户组list，可以通过勾选框来增加、减少用户组3. 用户人数Int每个用户组对应的用户人数4. 截止时间时间维护报表Expose权限的截止时间，默认为2099-12-315. 操作项按钮完成，点击【完成】按钮后，系统保存对报表Expose权限的配置。3. 下列为条件搜索的字段：
+序号字段名控件说明1. Data Domian下拉框包括Data Domain1>Data Domain2>Data Domian3，枚举值从Subject area配置模块读取2. Report Name输入框支持模糊搜索匹配3. 操作项按钮查询、重置20.2. 权限配置
+　　应用的权限配置，提供应用找人、人找应用两种方式。应用包括：Report、Metadata、Cube。
+20.2.1. Report权限配置-应用找人
+20.2.1.1. 界面展示
+应用找人-按用户：
+
+应用找人-按用户组：
+
+添加权限-按用户：
+
+添加权限-按用户组：
+
+20.2.1.2. 功能说明
+1. 页面顶部展示三个应用：Report、Metadata、Cube。当选择Report时，即对Report配置权限。
+2. 页面左侧按Data Domain的层级显示所有的报表，页面右侧分成按用户、按用户组两个tab，展示左侧报表已授权的用户、用户组。
+3. 下列为应用找人-按用户的字段：
+序号字段名控件说明1. 报表文本按Data Domian的层级结构展示所有的报表2. 已授权用户Int已授权用户数3. 用户姓名文本显示全量的用户list，已授权的用户则被选中4. AD账号文本5. 导出(可查看)多选框选择则表示：该用户对某张报表的权限为：导出（可查看）6. 仅查看多选框选择则表示：该用户对某张报表的权限为：仅查看4. 下列为应用找人-按用户组的字段：
+序号字段名控件说明1. 报表文本按Data Domian的层级结构展示所有的报表2. 已授权用户组Int已授权用户组数3. 用户组名称文本显示全量的用户组list，已授权的用户组则被选中4. 用户人数Int该用户组对应的用户人数5. 导出(可查看)多选框选择则表示：该用户对某张报表的权限为：导出（可查看）6. 仅查看多选框选择则表示：该用户对某张报表的权限为：仅查看7. 截止时间时间显示被配置的权限的截止时间5. 下列为搜索项：
+序号字段名控件说明1. Data Domian下拉框包括Data Domain1>Data Domain2>Data Domian3，枚举值从Subject area配置模块读取2. Report Name输入框支持模糊搜索匹配3. 用户姓名输入框支持模糊搜索匹配4. AD账号输入框支持模糊搜索匹配5. 邮箱输入框支持模糊搜索匹配6. 操作项按钮查询、重置6. 支持By报表、By Data DomianBy Hub及对应的子报表对用户、用户组添加权限。在针对Hub内的子报表进行配置时，增加一个all的全选按钮[AHL18]
+7. Report权限配置主要针对SC的报表进行配置，所以系统做一层控制：属于营运架构报表（报表基本属性字段）的报表不能被配置。
+8. 如果一张报表同时按用户组、用户设置了权限，系统取用户数据的全集。
+9. 截止时间：若该用户在用户端申请了报表权限，则把用户端申请时填写的截止时间带过来，可以修改。若该用户没有在用户端申请，则默认当前申请时间+1年，可以修改。
+20.2.2. Report权限配置-人找应用
+20.2.2.1. 界面展示
+人找应用-按用户：
+
+人找应用-按用户组：
+
+添加授权-按用户：
+
+添加授权-按用户组：
+
+20.2.2.2. 功能说明
+1. 页面顶部展示三个应用：Report、Metadata、Cube。当选择Report时，即对Report配置权限。
+2. 页面左侧分成按用户、按用户组两个tab，展示全量的用户、用户组。页面右侧按Data Domain的层级显示所有报表，对应左侧用户、用户组已经被配置权限的报表显示被勾选。
+3. 下列为人找应用-按用户的字段：
+序号字段名控件说明1. 用户姓名文本显示全量的用户list 2. 已授权报表Int已授权报表数3. 报表名称文本按Data Domian的层级结构展示所有的报表4. 导出(可查看)多选框选中则表示：用户对该报表的权限为：导出（可查看）5. 仅查看多选框选中则表示：用户对该报表的权限为：仅查看6. 截止时间时间显示被配置的权限的截止时间4. 下列为人找应用-按用户组的字段：
+序号字段名控件说明1. 用户组名称文本显示全量的用户组list 2. 已授权报表Int已授权报表数3. 报表名称文本按Data Domian的层级结构展示所有的报表4. 导出(可查看)多选框选中则表示：用户对该报表的权限为：导出（可查看）5. 仅查看多选框选中则表示：用户对该报表的权限为：仅查看6. 截止时间时间显示被配置的权限的截止时间5. 下列为搜索项：
+序号字段名控件说明1. Data Domian下拉框包括Data Domain1>Data Domain2>Data Domian3，枚举值从Subject area配置模块读取2. Report Name输入框支持模糊搜索匹配3. 用户姓名输入框支持模糊搜索匹配4. 用户组名称输入框支持模糊搜索匹配5. 操作项按钮查询、重置6. 支持By用户、By 用户组对报表添加权限。
+7. Report权限配置主要针对SC的报表进行配置，所以系统做一层控制：属于营运架构报表（报表基本属性字段）的报表不能被配置。
+8. 若By用户A的报表权限和By用户组内用户A的报表权限不一致，系统取全集。
+9. 截止时间：若该用户在用户端申请了报表权限，则把用户端申请时填写的截止时间带过来，可以修改。若该用户没有在用户端申请，则默认当前申请时间+1年，可以修改。
+20.2.3. Metadata权限配置-应用找人
+20.2.3.1. 界面展示
+应用找人-按用户：
+
+应用找人-按用户组：
+
+添加授权-按用户：
+
+添加授权-按用户组：
+
+20.2.3.2. 功能说明
+1. 页面左侧展示所有的Subject area L1，category L1、asset type（即category L2），通过筛选Subject area L1、category L1、asset type，展示相应的 Content名称。
+2. 页面右侧展示已授权该Content的用户、用户组。
+3. 支持By Category L1、By asset type、By Content对用户、用户组授权。
+4. 下列为应用找人-按用户列表字段：
+序号字段名控件说明1. Subject area L1文本读取Subject area配置模块的Subject area L12. Category文本读取Category配置模块的Category L1、asset type3. Content name文本显示subject area L1、category下对应的Content name4. 已授权用户Int已授权用户数5. 用户姓名文本显示全量的用户，已经被授权的用户则显示被选中6. AD账号文本7. 导出(可查看)多选框选中则表示：该用户对该Content的权限为：导出（可查看）8. 仅查看多选框选中则表示：该用户对该Content的权限为：仅查看9. 截止时间时间Content权限的截止时间5. 下列为搜索项字段：
+序号字段名控件说明1. Subject area L1下拉框枚举值从Subject area配置模块读取2. Category L1下拉框枚举值从category配置模块读取3. Asset type下拉框即category L2，枚举值从category配置模块读取4. content Name输入框支持模糊搜索匹配5. 用户姓名输入框支持模糊搜索匹配6. AD账号输入框支持模糊搜索匹配7. 邮箱输入框支持模糊搜索匹配8. 操作项按钮查询、重置6. 支持By Category L1、By asset type、By Content对用户、用户组配置权限。
+7. 如果一个Content同时按用户组、用户设置了权限，系统取用户数据的全集。
+8. 截止时间：若该用户在用户端申请了Content权限，则把用户端申请时填写的截止时间带过来，可以修改。若该用户没有在用户端申请，则默认当前申请时间+1年，可以修改。
+20.2.4. Metadata权限配置-人找应用
+20.2.4.1. 界面展示
+人找应用-按用户：
+
+人找应用-按用户组：
+
+添加授权-按用户：
+
+添加授权-按用户组：
+
+20.2.4.2. 功能说明
+1. 页面左侧展示全量的用户、用户组；
+2. 页面右侧展示所有的Subject area L1，category L1、asset type（即category L2），支持筛选Subject area L1、category L1、asset type，展示相应的 Content名称及Content的权限；
+3. 支持By 用户、By 用户组对Content授权;
+4. 下列为人找应用-按用户字段：
+序号字段名控件说明1. 用户姓名文本展示全量的用户列表2. 已授权ContentInt左侧用户已授权的Content数3. Subject area L1文本读取Subject area配置模块的Subject area L14. Category文本读取Category配置模块的Category L1、asset type5. Content name文本显示subject area L1、category下对应的Content name6. 导出(可查看)多选框选中则表示：用户对该Content的权限为：导出（可查看）7. 仅查看多选框选中则表示：用户对该Content的权限为：仅查看8. 截止时间时间Content权限的截止时间5. 下列为搜索项字段：
+序号字段名控件说明1. 用户姓名输入框支持模糊搜索匹配2. Subject area L1下拉框枚举值从Subject area配置模块读取3. Category L1下拉框枚举值从category配置模块读取4. Asset type下拉框即category L2，枚举值从category配置模块读取5. content Name输入框支持模糊搜索匹配6. 操作项按钮查询、重置6. 支持By 用户、By 用户组对Content配置权限。
+7. 若By用户A的报表权限和By用户组内用户A的报表权限不一致，系统取全集。
+8. 截止时间：若该用户在用户端申请了Content权限，则把用户端申请时填写的截止时间带过来，可以修改。若该用户没有在用户端申请，则默认当前申请时间+1年，可以修改。
+
+20.3. 报表行列级权限
+20.3.1.1. 界面展示
+
+20.3.1.2. 功能说明
+1. 页面左边展示报表数据，仅展示报表基础信息中：“是否对Metrics控制”、“是否对Module控制”、”是否对Store Scope控制“至少有一个值为“是”的报表；
+2. 右边展示的按用户、按用户组为：权限-应用找人、人找应用中已经对该报表设置了权限的用户；
+3. 该页面定位为：进一步对2这些有报表权限的用户设置报表行列级权限。
+4. 若是否对Module、Metrics、Store Scope控制为是，则右边的行列级权限配置框：显示为All，不可配置。
+5. 下列为报表行列级权限的字段：
+序号字段名控件说明1. 报表文本按Data Domian的层级结构展示所有的报表2. 已授权用户Int已授权用户数3. 用户姓名文本显示已经对该报表设置了权限的用户4. AD账号文本5. 导出(可查看)多选框选中则表示：该用户对某张报表的权限为：导出（可查看）6. 仅查看多选框选中则表示：该用户对某张报表的权限为：仅查看7. 截止时间时间显示被配置的权限的截止时间8. Metrics下拉框若报表是否对Module、Metrics、Store Scope控制为是，则右边的行列级权限配置框：显示为All，不可配置；否则枚举值为在报表基础信息中配置的信息9. Module下拉框10. Store Scope下拉框
+21. 系统分析报表[EHC19]
+21.1. 用户分析
+访问次数、模块数、报表数、下载等
+21.2. 用量分析
+每个模块、报表的UV/PV/下载
+21.3. 资源分析
+
+
+22. Q&A
+显示全部的用户提问信息，并可以针对提问给与反馈。
+22.1. 界面展示
+
+
+
+22.2. 功能说明
+1. 显示全部的用户提问信息，并可以针对提问给与反馈。
+2. 用户有提问信息时，需同步邮件提醒相应的用户。应用类问题邮件到应用的负责人，平台问题邮件到系统管理员。
+3. 下列为列表字段：
+序号字段名控件说明1. 提问类型下拉框枚举值固定：应用-REPORT、应用-METADTA、应用-CUBE、平台2. 提问内容文本3. 提问人文本显示提问人的平台账号4. 提问时间时间YYYY-MM-DD  HH:MM 比如：2025-03-20 10:305. 是否已反馈下拉框枚举值固定：是、否6. 操作按钮反馈：点击反馈按钮，弹出弹框，支持对提问进行反馈
+详情：跳转Q&A详情页4. 下列为搜索项字段：
+序号字段名控件说明1. 提问类型下拉框枚举值固定：应用-REPORT、应用-METADTA、应用-CUBE、平台2. 提问内容文本支持模糊搜索3. 是否已反馈下拉框枚举值固定：是、否4. 操作按钮查询、重置
+23. 系统消息
+23.1. 界面展示
+OAH-消息中心：
+
+OAH-消息中心-查看全部消息：
+
+OAH管理后台-系统消息：
+
+OAH管理后台-发布消息：
+
+23.2. 功能说明
+1. OAH消息中心展示所有的消息提醒，消息提醒的业务场景有：
+a) 同触发邮件通知的场景，比如：Metadata、report、cube的审核流程，待审核或者有了审核结果；
+b) 在数据模型出现delay；
+c) 数据issue；
+d) 系统运维，比如，OAH系统进行升级/维护；
+2. b、c、d业务场景的消息内容由用户在【系统消息-发布消息】模块编辑并发送；a场景下的消息内容由系统根据固定规则自动发送；
+3. 由【系统消息-发布消息】模块编辑并发送的消息在OAH：Home页展示时，用户进入Home页则自动以弹框形式在页面顶部显示。
+4. OAH管理后台-系统消息：展示所有在【管理后台-系统消息】模块发布的消息。
+5. 下列为OAH管理后台-系统消息列表字段：
+序号字段名控件说明1. 编号Int系统自动生成，自增2. 消息标题文本3. 消息类型下拉框固定值，系统运维、数据delay、数据issue4. 消息内容文本5. 更新人文本显示更新人的平台账号6. 更新时间时间YYYY-MM-DD  HH:MM 比如：2025-03-20 10:307. 操作按钮编辑、删除、发布消息6. 条件搜索：支持按消息标题模糊搜索、按消息类型精确查询。
+7. 下列为系统消息-发布消息需维护的字段：
+序号字段名控件说明1. 消息标题文本2. 消息类型下拉框固定值，系统运维、数据delay、数据issue3. 消息内容文本消息内容支持直接文本编辑，也支持先选择固定的文本模板，再编辑；1. 选择模板4. 操作按钮返回、确认新增
+24. OAH Hub配置功能
+24.1. 界面展示
+
+
+
+
+
+24.2. 功能说明
+1. 支持在OAH中通过已有的报表组建Hub。新增Hub需由上传人填写基础信息，菜单层级&报表配置，权限配置后才能生效
+2. 支持在report management 及 Reporting 两个页面进行创建的动作
+
+24.2.1. 门户基础信息填写
+1. 在该页面完成门户基本信息的登录
+2. 输出项：
+序号字段名控件说明1. Hub Name输入框用户手动维护2. Department1下拉框用户手动维护，枚举值从NPC同步3. Department2下拉框用户手动维护，枚举值从NPC同步，Department2与Department1有数据关联4. Security level下拉框用户手动维护，枚举值固定：L1-PUBLIC、L2-INTERNAL、L3-CONFIDENTAL、L4-PRIVATE。单选5. Report Description-short EN输入框用户手动维护6. Report Description-Detailed EN输入框用户手动维护7. Report Description-short CN输入框用户手动维护8. Report Description-Detailed CN输入框用户手动维护9. Screen Shot上传用户上传Hub封面10. 是否属于营运架构报表单选固定值：是、否11. Exposure to CLT单选固定值：是、否
+
+24.2.2. 菜单层级&报表配置
+1. 支持在页面的左侧进行菜单层级的配置。菜单层级最多支持三级，如果用户配置超过三级，则提示报错’目前OAH Hub仅支持三级菜单的配置
+2. 支持菜单层级的删除，隐藏，顺序移动
+3. 支持顶部和左部导航的布局
+4. 基于用户在左侧的操作，动态更新右边的预览
+5. 在内容节点支持用户关联需要展示的报表
+6. 支持在Hub中搜索层级的名字
+24.2.3. 权限配置
+1. 参考Reporing的权限配置功能
+2. Module 读取用户在菜单层级&报表配置中配置的reporting
+3. 在Hub中内容的权限需要继承看板的权限
+
+四、FY26 OAH 需求汇总 
+25. OAH 门店伙伴简化版
+25.1. 界面展示
+
+
+25.2. 功能说明
+1. 针对Ops组织架构的伙伴，展现独立的页面。URL和OAH Portal是同一个
+2. 在界面上隐藏左侧的导航栏/顶部的导航栏/英文的语种
+3. 默认进入在中文的语言
+4. Notification和Search功能基于访问用户的权限，只展示有权限的看板
+5. 支持伙伴通过绿围裙的扫码登录功能[AHL20]
+6. 增加ops代理门店的功能OAH Portal retail 版本页面
+25.3. Ops门店代理功能
+25.3.1. 设置代理页面
+
+序号字段控件说明1流程名称文本用户后续配置填写2节点名称文本用户后续配置选取
+
+25.3.2. 设置代理页面
+选择代理节点/门店，默认显示N-1层级，点击打开N-2层级。DM只有一个层级
+
+
+
+26. Notification 配置界面
+26.1. 界面展示
+
+
+
+
+26.2. 功能说明
+1. 前端的通知组织结构消息标签+消息标题+时间+消息正文（显示一定字段，后面的字符显示…） 
+2. 展开Notification后点击Details 跳转到完整信息
+3. 在New/Update时，点击报表名跳转到对应报表
+4. 系统消息
+26.3. 基础信息填写
+序号字段名控件说明1. 通知类型下拉框枚举值：报表上新/报表更新/数据延迟/系统通知
+2. 信息标题输入框用户手动维护3. 报表名输入框支持检索，在数据延迟/系统通知时置灰不生效4. 信息正文输入框用户手动维护，字数不超过150字 
+27. Mobile DAC的权限功能调整
+27.1. 前端展示
+
+
+
+27.2. 功能描述
+1 Store Scope中，初始都是展开五大区层级。只有用户点击更细一层的门店范围时，子范围才展开
+2 Moduls中，删除中间的health check , 卡片detal，只保留各个卡片。用户选中卡片时，开通对应的卡片及detaul权限
+
+
+[AHL1]HUB功能上线后，Popular reports的逻辑调整
+[AHL2]门店白名单功能描述
+[AHL3]关于Popular Report中PV访问的统计逻辑修改
+[AHL4]
+[AHL5]主要是针对Store Health这类OPS报表
+[AHL6]针对Role CLT的expose / 数据权限修改
+[AHL7]新增任务节点背景色的描述
+[AHL8]临期报表的处理+续签标签
+[AHL9]新增批量取消申请的页面（Update）
+[AHL10]新增批量撤销申请的功能
+[AHL11]进度条中新增了申请人的部门+职级
+[AHL12]新增了关于续签的标签描述
+[YZ13]字段待进一步确认
+[AHL14]更新了枚举值
+[AHL15]增加了筛选器，便于迅速找到报表
+[AHL16]增加了筛选器，便于迅速找到报表
+[EHC17]待Andrew后续补充
+[AHL18]针对新增的Hub功能，增加一个快速赋权的功能
+[EHC19]后续待Andrew补充
+[AHL20]新增扫码登录功能描述
+	
+
+第 128 页 / 共 135 页
+
+
